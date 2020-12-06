@@ -1,4 +1,3 @@
-using System;
 namespace Hackaton_test.Models
 {
     public class Achievement

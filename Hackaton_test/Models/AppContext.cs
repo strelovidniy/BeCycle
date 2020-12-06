@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
 {
     public class AppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Poster> Posters { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

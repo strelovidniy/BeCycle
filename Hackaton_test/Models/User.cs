@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hackaton_test.Models
 {
@@ -31,5 +28,13 @@ namespace Hackaton_test.Models
         [Required]
         [Column(TypeName = "nvarchar(50)")]
         public string PhoneNumber { get; set; }
+
+        public uint Distance { get; set; }
+        
+
+        public List<Poster> Posters { get; set; }
+
+        public List<Achievement> Achievements { get; set; }
+        
     }
 }
