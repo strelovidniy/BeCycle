@@ -2,11 +2,11 @@
 
 namespace Hackaton_test.Models
 {
-    public class AppContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Poster> Posters { get; set; }
-        public DbSet<Achievement> Achievements { get; set; }
+        //public DbSet<Achievement> Achievements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

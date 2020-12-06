@@ -29,12 +29,17 @@ namespace Hackaton_test.Models
         [Column(TypeName = "nvarchar(50)")]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(50)")]
+        public string City { get; set; }
+        
+
         public uint Distance { get; set; }
         
 
         public List<Poster> Posters { get; set; }
 
-        public List<Achievement> Achievements { get; set; }
+        //public List<Achievement> Achievements { get; set; }
         
     }
 }
