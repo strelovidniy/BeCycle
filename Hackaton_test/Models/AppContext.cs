@@ -12,7 +12,7 @@ namespace Hackaton_test.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(@"Server=WORKSTATION\WORKSTATION; Database=HackatonDB; Trusted_Connection=True");
         }
     }
 }
