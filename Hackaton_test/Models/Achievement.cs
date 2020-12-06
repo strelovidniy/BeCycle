@@ -5,5 +5,6 @@ namespace Hackaton_test.Models
         public uint AchieveId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        
     }
 }
