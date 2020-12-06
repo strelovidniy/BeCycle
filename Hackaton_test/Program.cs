@@ -16,8 +16,6 @@ namespace Hackaton_test
             CreateHostBuilder(args).Build().Run();
         }
 
-        //Test\
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
