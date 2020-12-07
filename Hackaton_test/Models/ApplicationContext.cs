@@ -23,7 +23,7 @@ namespace Hackaton_test.Models
 
       
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-JHQRTRT; Database=HackatonDB; Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Server=WORKSTATION\WORKSTATION; Database=HackatonDB; Trusted_Connection=True");
     }
 
     public class UserConfiguration : IEntityTypeConfiguration<User>

@@ -1,24 +1,20 @@
 ﻿using Hackaton_test.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 
 namespace Hackaton_test.Controllers
 {
     public class PosterController:Controller
     {
-        //TODO: add method that will be get poster by id
-        public ActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
-        }
+            Poster poster;
 
-        // public IActionResult Index(int id)
-        // {
-        //    var poster = //DB.GetPosterByID(id);
-        //     return View(poster);
-        // }
+            using (var db = new ApplicationContext())
+            {
+                poster = db.Posters.First(poster => poster.PosterId == id);
+            }
+            return View(poster);
+        }
     }
 }

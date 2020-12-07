@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackaton_test.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201207184408_NicknameFix")]
-    partial class NicknameFix
+    [Migration("20201207190446_Migration1")]
+    partial class Migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,9 @@ namespace Hackaton_test.Migrations
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("SportType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

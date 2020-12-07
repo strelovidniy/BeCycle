@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hackaton_test.Migrations
 {
-    public partial class Friends : Migration
+    public partial class Migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,6 +39,7 @@ namespace Hackaton_test.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.UserId);
+                    table.UniqueConstraint("AK_User_NickName", x => x.NickName);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,6 +52,7 @@ namespace Hackaton_test.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SportType = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
