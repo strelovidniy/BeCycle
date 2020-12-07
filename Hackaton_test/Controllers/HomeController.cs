@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Hackaton_test.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Hackaton_test.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,6 +15,7 @@ namespace Hackaton_test.Controllers
         
         //TODO: add pull out from database
 
+        [AllowAnonymous]
         public IActionResult Index(SportType sportType)
         {
             //pull out all posters that have the same sporttype

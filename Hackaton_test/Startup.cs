@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Hackaton_test
 {
@@ -23,6 +24,20 @@ namespace Hackaton_test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/account/google-login";
+                })
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "713332156036-tnnlfmbjjfscmqn75lfpqn88udsohdsd.apps.googleusercontent.com";
+                    options.ClientSecret = "4bWOT3YhFBLw1agomAMhMjUY";
+                });
+
             services.AddControllersWithViews();
         }
 
@@ -44,6 +59,7 @@ namespace Hackaton_test
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

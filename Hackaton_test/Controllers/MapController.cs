@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Hackaton_test.Models.GoogleMaps;
+using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 
 
 namespace Hackaton_test.Controllers
 {
+    [Authorize]
     public class MapController : Controller
     {
-
         public IActionResult Index()
         {
             return View();
