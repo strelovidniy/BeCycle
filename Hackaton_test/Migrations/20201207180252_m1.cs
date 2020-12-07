@@ -29,10 +29,10 @@ namespace Hackaton_test.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    NickName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Age = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    NickName = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Distance = table.Column<int>(type: "int", nullable: false)
                 },
@@ -49,32 +49,61 @@ namespace Hackaton_test.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PosterUserForeignKey = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AuthorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Poster", x => x.PosterId);
                     table.ForeignKey(
-                        name: "FK_Poster_User_PosterUserForeignKey",
-                        column: x => x.PosterUserForeignKey,
+                        name: "FK_Poster_User_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventFollower",
+                columns: table => new
+                {
+                    FollowerId = table.Column<int>(type: "int", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventFollower", x => new { x.EventId, x.FollowerId });
+                    table.ForeignKey(
+                        name: "FK_EventFollower_Poster_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Poster",
+                        principalColumn: "PosterId");
+                    table.ForeignKey(
+                        name: "FK_EventFollower_User_FollowerId",
+                        column: x => x.FollowerId,
+                        principalTable: "User",
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Poster_PosterUserForeignKey",
+                name: "IX_EventFollower_FollowerId",
+                table: "EventFollower",
+                column: "FollowerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Poster_AuthorId",
                 table: "Poster",
-                column: "PosterUserForeignKey");
+                column: "AuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Achievement");
+
+            migrationBuilder.DropTable(
+                name: "EventFollower");
 
             migrationBuilder.DropTable(
                 name: "Poster");
