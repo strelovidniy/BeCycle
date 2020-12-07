@@ -8,7 +8,10 @@ namespace Hackaton_test.Controllers
     public class MapController : Controller
     {
         // GET
-        
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public JsonResult GetData() 
         {
