@@ -18,6 +18,7 @@ namespace Hackaton_test.Models
             modelBuilder.ApplyConfiguration(new PosterConfiguration());
             modelBuilder.ApplyConfiguration(new AchievementConfiguration());
             modelBuilder.Entity<EventFollower>().HasKey(ef => new {ef.EventId, ef.FollowerId});
+            modelBuilder.Entity<UserAchievement>().HasKey(ua => new {ua.AchievementId, ua.UserId});
         }
 
       
@@ -63,6 +64,8 @@ namespace Hackaton_test.Models
         public void Configure(EntityTypeBuilder<Achievement> modelBuilder)
         {
             modelBuilder.ToTable("Achievement");
+            modelBuilder.Property(a => a.Name).IsRequired().HasColumnType("nvarchar(50)");
+            modelBuilder.Property(a => a.Description).IsRequired().HasColumnType("nvarchar(250)");
         }
     }
 }

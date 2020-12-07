@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton_test.Models
 {
- 
+
     public class User
     {
         public int UserId { get; set; }
@@ -16,16 +16,25 @@ namespace Hackaton_test.Models
         public string PhoneNumber { get; set; }
         public string City { get; set; }
         public int Distance { get; set; }
-        
+
         public List<Poster> Posters { get; set; }
 
         public List<EventFollower> EventFollowers { get; set; }
-        //public List<Achievement> Achievements { get; set; }
+        public List<UserAchievement> UserAchievements { get; set; }
 
         public User()
         {
             EventFollowers = new List<EventFollower>();
+            UserAchievements = new List<UserAchievement>();
         }
+    }
+
+    public class UserAchievement
+    {
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public int AchievementId { get; set; }
+        public Achievement Achievement { get; set; }
     }
 
     public class EventFollower
