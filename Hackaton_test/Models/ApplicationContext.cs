@@ -1,5 +1,4 @@
-﻿using Google.Apis.Calendar.v3.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Hackaton_test.Models
@@ -22,10 +21,8 @@ namespace Hackaton_test.Models
         }
 
       
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-JHQRTRT; Database=HackatonDB; Trusted_Connection=True");
-        }
     }
 
     public class UserConfiguration : IEntityTypeConfiguration<User>

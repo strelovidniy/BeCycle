@@ -9,9 +9,6 @@ namespace Hackaton_test.Models
         public string Description { get; set; }
         public List<UserAchievement> UserAchievements { get; set; }
 
-        public Achievement()
-        {
-            UserAchievements = new List<UserAchievement>();
-        }
+        public Achievement() => UserAchievements = new List<UserAchievement>();
     }
 }
