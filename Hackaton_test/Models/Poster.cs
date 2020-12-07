@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton_test.Models
 {
-   
     public class Poster
     {
         public int PosterId { get; set; }
@@ -18,9 +16,6 @@ namespace Hackaton_test.Models
 
         public List<EventFollower> EventFollowers { get; set; }
 
-        public Poster()
-        {
-            EventFollowers = new List<EventFollower>();
-        }
+        public Poster() => EventFollowers = new List<EventFollower>();
     }
 }
