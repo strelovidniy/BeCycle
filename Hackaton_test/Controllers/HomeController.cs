@@ -23,7 +23,6 @@ namespace Hackaton_test.Controllers
                 new Poster() {PosterId = 3, Title = "third",Description = "smth3",SportType = SportType.Extreme},
             };
             return View(posters);
-
         }
 
 
