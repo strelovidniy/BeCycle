@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton_test.Models
@@ -14,5 +15,12 @@ namespace Hackaton_test.Models
 
         public User Author { get; set; }
         public int AuthorId { get; set; }
+
+        public List<EventFollower> EventFollowers { get; set; }
+
+        public Poster()
+        {
+            EventFollowers = new List<EventFollower>();
+        }
     }
 }

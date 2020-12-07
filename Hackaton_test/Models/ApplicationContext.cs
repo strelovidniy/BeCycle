@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Google.Apis.Calendar.v3.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Hackaton_test.Models
@@ -16,7 +17,7 @@ namespace Hackaton_test.Models
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new PosterConfiguration());
             modelBuilder.ApplyConfiguration(new AchievementConfiguration());
-
+            modelBuilder.Entity<EventFollower>().HasKey(ef => new {ef.EventId, ef.FollowerId});
         }
 
       
@@ -37,7 +38,9 @@ namespace Hackaton_test.Models
             modelBuilder.Property(u => u.LastName).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.Email).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.PhoneNumber).HasColumnType("nvarchar(15)");
-           
+            modelBuilder.HasMany(p => p.EventFollowers)
+                .WithOne(ef => ef.Follower)
+                .HasForeignKey(f => f.FollowerId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 
@@ -49,6 +52,9 @@ namespace Hackaton_test.Models
             modelBuilder.HasOne(p => p.Author)
                 .WithMany(u => u.Posters)
                 .HasForeignKey(p => p.AuthorId);
+            modelBuilder.HasMany(p => p.EventFollowers)
+                .WithOne(ef => ef.Event)
+                .HasForeignKey(f => f.EventId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 

@@ -19,6 +19,20 @@ namespace Hackaton_test.Models
         
         public List<Poster> Posters { get; set; }
 
+        public List<EventFollower> EventFollowers { get; set; }
         //public List<Achievement> Achievements { get; set; }
+
+        public User()
+        {
+            EventFollowers = new List<EventFollower>();
+        }
+    }
+
+    public class EventFollower
+    {
+        public int FollowerId { get; set; }
+        public User Follower { get; set; }
+        public int EventId { get; set; }
+        public Poster Event { get; set; }
     }
 }

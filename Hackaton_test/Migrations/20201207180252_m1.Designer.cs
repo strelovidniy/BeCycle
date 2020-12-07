@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackaton_test.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201207131813_m1")]
+    [Migration("20201207180252_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,21 @@ namespace Hackaton_test.Migrations
                     b.ToTable("Achievement");
                 });
 
+            modelBuilder.Entity("Hackaton_test.Models.EventFollower", b =>
+                {
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FollowerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventId", "FollowerId");
+
+                    b.HasIndex("FollowerId");
+
+                    b.ToTable("EventFollower");
+                });
+
             modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
                 {
                     b.Property<int>("PosterId")
@@ -46,14 +61,14 @@ namespace Hackaton_test.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("PosterUserForeignKey")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -61,12 +76,9 @@ namespace Hackaton_test.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("PosterId");
 
-                    b.HasIndex("PosterUserForeignKey");
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Poster");
                 });
@@ -78,9 +90,8 @@ namespace Hackaton_test.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -102,28 +113,55 @@ namespace Hackaton_test.Migrations
 
                     b.Property<string>("NickName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("UserId");
 
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("Hackaton_test.Models.EventFollower", b =>
+                {
+                    b.HasOne("Hackaton_test.Models.Poster", "Event")
+                        .WithMany("EventFollowers")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Hackaton_test.Models.User", "Follower")
+                        .WithMany("EventFollowers")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Follower");
+                });
+
             modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
                 {
-                    b.HasOne("Hackaton_test.Models.User", "User")
+                    b.HasOne("Hackaton_test.Models.User", "Author")
                         .WithMany("Posters")
-                        .HasForeignKey("PosterUserForeignKey");
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
+                {
+                    b.Navigation("EventFollowers");
                 });
 
             modelBuilder.Entity("Hackaton_test.Models.User", b =>
                 {
+                    b.Navigation("EventFollowers");
+
                     b.Navigation("Posters");
                 });
 #pragma warning restore 612, 618
