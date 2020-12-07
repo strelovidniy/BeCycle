@@ -2,7 +2,6 @@
 
 namespace Hackaton_test.Models
 {
-
     public class User
     {
         public int UserId { get; set; }
