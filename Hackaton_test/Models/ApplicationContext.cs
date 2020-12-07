@@ -37,6 +37,7 @@ namespace Hackaton_test.Models
             modelBuilder.Property(u => u.LastName).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.Email).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.PhoneNumber).HasColumnType("nvarchar(15)");
+           
         }
     }
 
@@ -45,6 +46,9 @@ namespace Hackaton_test.Models
         public void Configure(EntityTypeBuilder<Poster> modelBuilder)
         {
             modelBuilder.ToTable("Poster");
+            modelBuilder.HasOne(p => p.Author)
+                .WithMany(u => u.Posters)
+                .HasForeignKey(p => p.AuthorId);
         }
     }
 
