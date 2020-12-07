@@ -2,13 +2,6 @@
 
 namespace Hackaton_test.Models
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 49eb56b697953001b6e4dc113ddc2e07f32e0725
-=======
->>>>>>> 726ceeee75b0efa92080d672d922467c0d31e7ab
     public class User
     {
         public int UserId { get; set; }
@@ -19,17 +12,8 @@ namespace Hackaton_test.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string City { get; set; }
-<<<<<<< HEAD
-
         public int Distance { get; set; }
-
         public List<Poster> Posters { get; set; } 
-=======
-        public int Distance { get; set; }
-
-        public List<Poster> Posters { get; set; }
->>>>>>> 49eb56b697953001b6e4dc113ddc2e07f32e0725
-
         public List<EventFollower> EventFollowers { get; set; }
         public List<UserAchievement> UserAchievements { get; set; }
 
