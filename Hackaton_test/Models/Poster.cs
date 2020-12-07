@@ -3,7 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton_test.Models
 {
-   
+    public enum SportType
+    {
+        Extreme, 
+        Race,
+        ForestRide
+    }
     public class Poster
     {
         public int PosterId { get; set; }
@@ -13,5 +18,7 @@ namespace Hackaton_test.Models
         public int UserId { get; set; }
         public DateTime EventDate { get; set; }
         public DateTime PublicationDate { get; set; }
+        public SportType SportType { get; set; }
+        
     }
 }

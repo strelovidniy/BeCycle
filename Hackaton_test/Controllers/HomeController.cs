@@ -18,9 +18,19 @@ namespace Hackaton_test.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        //TODO: add pull out from database
+
+        public IActionResult Index(SportType sportType)
         {
-            return View();
+            //pull out all posters that have the same sporttype
+            var posters = new List<Poster>()
+            {
+                new Poster() {PosterId = 1,Title = "first",Description = "smth1",SportType = SportType.Extreme}, 
+                new Poster() {PosterId = 2,Title = "second",Description = "smth2", SportType = SportType.Extreme},
+                new Poster() {PosterId = 3, Title = "third",Description = "smth3",SportType = SportType.Extreme},
+            };
+            return View(posters);
+
         }
 
         public IActionResult Privacy()
