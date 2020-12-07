@@ -120,6 +120,8 @@ namespace Hackaton_test.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasAlternateKey("NickName");
+
                     b.ToTable("User");
                 });
 
@@ -136,6 +138,21 @@ namespace Hackaton_test.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserAchievement");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.UserFriend", b =>
+                {
+                    b.Property<int>("FriendId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FriendId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFriend");
                 });
 
             modelBuilder.Entity("Hackaton_test.Models.EventFollower", b =>
@@ -187,6 +204,25 @@ namespace Hackaton_test.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Hackaton_test.Models.UserFriend", b =>
+                {
+                    b.HasOne("Hackaton_test.Models.User", "Friend")
+                        .WithMany("UserFriends")
+                        .HasForeignKey("FriendId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Hackaton_test.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Friend");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Hackaton_test.Models.Achievement", b =>
                 {
                     b.Navigation("UserAchievements");
@@ -204,6 +240,8 @@ namespace Hackaton_test.Migrations
                     b.Navigation("Posters");
 
                     b.Navigation("UserAchievements");
+
+                    b.Navigation("UserFriends");
                 });
 #pragma warning restore 612, 618
         }
