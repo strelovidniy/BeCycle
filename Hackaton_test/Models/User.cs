@@ -4,42 +4,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton_test.Models
 {
-    [Table("User")]
+ 
     public class User
     {
-        [Column("UserId")] public uint Id { get; set; }
+        public int UserId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
         public string FirstName { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
         public string LastName { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
-        public uint Age { get; set; }
+        public string NickName { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
+        public int Age { get; set; }
+
         public string Email { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
         public string City { get; set; }
         
-
-        public uint Distance { get; set; }
+        public int Distance { get; set; }
         
-
         public List<Poster> Posters { get; set; }
 
         //public List<Achievement> Achievements { get; set; }
-        
     }
 }

@@ -19,12 +19,29 @@ namespace Hackaton_test.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
+            modelBuilder.Entity("Hackaton_test.Models.Achievement", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AchievementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("PosterId")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AchievementId");
+
+                    b.ToTable("Achievement");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
+                {
+                    b.Property<int>("PosterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<string>("Description")
@@ -33,8 +50,8 @@ namespace Hackaton_test.Migrations
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("PosterUserForeignKey")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("PosterUserForeignKey")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -42,10 +59,10 @@ namespace Hackaton_test.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PosterId");
 
                     b.HasIndex("PosterUserForeignKey");
 
@@ -54,18 +71,21 @@ namespace Hackaton_test.Migrations
 
             modelBuilder.Entity("Hackaton_test.Models.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("UserId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Age")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("Distance")
-                        .HasColumnType("bigint");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Distance")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -76,14 +96,17 @@ namespace Hackaton_test.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NickName")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("User");
                 });
