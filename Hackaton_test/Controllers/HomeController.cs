@@ -1,4 +1,5 @@
-﻿using Hackaton_test.Models;
+﻿using System.Collections.Generic;
+using Hackaton_test.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -9,8 +10,7 @@ namespace Hackaton_test.Controllers
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger) => _logger = logger;
-
-<<<<<<< HEAD
+        
         //TODO: add pull out from database
 
         public IActionResult Index(SportType sportType)
@@ -25,9 +25,7 @@ namespace Hackaton_test.Controllers
             return View(posters);
 
         }
-=======
-        public IActionResult Index() => View();
->>>>>>> cb99acb0613358e8666409f4eb6f503b457fe108
+
 
         public IActionResult Privacy() => View();
     }
