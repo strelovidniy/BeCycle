@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackaton_test.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201207180252_m1")]
-    partial class m1
+    [Migration("20201207184408_NicknameFix")]
+    partial class NicknameFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,10 +29,12 @@ namespace Hackaton_test.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("AchievementId");
 
@@ -120,7 +122,39 @@ namespace Hackaton_test.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasAlternateKey("NickName");
+
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.UserAchievement", b =>
+                {
+                    b.Property<int>("AchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AchievementId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAchievement");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.UserFriend", b =>
+                {
+                    b.Property<int>("FriendId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FriendId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFriend");
                 });
 
             modelBuilder.Entity("Hackaton_test.Models.EventFollower", b =>
@@ -153,6 +187,49 @@ namespace Hackaton_test.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("Hackaton_test.Models.UserAchievement", b =>
+                {
+                    b.HasOne("Hackaton_test.Models.Achievement", "Achievement")
+                        .WithMany("UserAchievements")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hackaton_test.Models.User", "User")
+                        .WithMany("UserAchievements")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.UserFriend", b =>
+                {
+                    b.HasOne("Hackaton_test.Models.User", "Friend")
+                        .WithMany("UserFriends")
+                        .HasForeignKey("FriendId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Hackaton_test.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Friend");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Hackaton_test.Models.Achievement", b =>
+                {
+                    b.Navigation("UserAchievements");
+                });
+
             modelBuilder.Entity("Hackaton_test.Models.Poster", b =>
                 {
                     b.Navigation("EventFollowers");
@@ -163,6 +240,10 @@ namespace Hackaton_test.Migrations
                     b.Navigation("EventFollowers");
 
                     b.Navigation("Posters");
+
+                    b.Navigation("UserAchievements");
+
+                    b.Navigation("UserFriends");
                 });
 #pragma warning restore 612, 618
         }

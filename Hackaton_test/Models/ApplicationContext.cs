@@ -19,6 +19,7 @@ namespace Hackaton_test.Models
             modelBuilder.ApplyConfiguration(new AchievementConfiguration());
             modelBuilder.Entity<EventFollower>().HasKey(ef => new {ef.EventId, ef.FollowerId});
             modelBuilder.Entity<UserAchievement>().HasKey(ua => new {ua.AchievementId, ua.UserId});
+            modelBuilder.Entity<UserFriend>().HasKey(uf => new {uf.FriendId, uf.UserId});
         }
 
       
@@ -32,16 +33,21 @@ namespace Hackaton_test.Models
     {
         public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
-            modelBuilder.ToTable("User");
+            modelBuilder.ToTable("User").HasAlternateKey(u => u.NickName);
             modelBuilder.Property(n => n.NickName).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.City).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.FirstName).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.LastName).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.Email).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.PhoneNumber).HasColumnType("nvarchar(15)");
+
             modelBuilder.HasMany(p => p.EventFollowers)
                 .WithOne(ef => ef.Follower)
                 .HasForeignKey(f => f.FollowerId).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.HasMany(u => u.UserFriends)
+                .WithOne(f => f.Friend)
+                .HasForeignKey(f => f.FriendId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 

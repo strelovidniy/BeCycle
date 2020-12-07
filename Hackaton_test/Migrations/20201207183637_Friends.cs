@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hackaton_test.Migrations
 {
-    public partial class m1 : Migration
+    public partial class Friends : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace Hackaton_test.Migrations
                 {
                     AchievementId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,6 +65,53 @@ namespace Hackaton_test.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserAchievement",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    AchievementId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAchievement", x => new { x.AchievementId, x.UserId });
+                    table.ForeignKey(
+                        name: "FK_UserAchievement_Achievement_AchievementId",
+                        column: x => x.AchievementId,
+                        principalTable: "Achievement",
+                        principalColumn: "AchievementId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserAchievement_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserFriend",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    FriendId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFriend", x => new { x.FriendId, x.UserId });
+                    table.ForeignKey(
+                        name: "FK_UserFriend_User_FriendId",
+                        column: x => x.FriendId,
+                        principalTable: "User",
+                        principalColumn: "UserId");
+                    table.ForeignKey(
+                        name: "FK_UserFriend_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EventFollower",
                 columns: table => new
                 {
@@ -95,18 +142,34 @@ namespace Hackaton_test.Migrations
                 name: "IX_Poster_AuthorId",
                 table: "Poster",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAchievement_UserId",
+                table: "UserAchievement",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFriend_UserId",
+                table: "UserFriend",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Achievement");
-
-            migrationBuilder.DropTable(
                 name: "EventFollower");
 
             migrationBuilder.DropTable(
+                name: "UserAchievement");
+
+            migrationBuilder.DropTable(
+                name: "UserFriend");
+
+            migrationBuilder.DropTable(
                 name: "Poster");
+
+            migrationBuilder.DropTable(
+                name: "Achievement");
 
             migrationBuilder.DropTable(
                 name: "User");

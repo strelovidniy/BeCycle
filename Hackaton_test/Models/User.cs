@@ -21,11 +21,13 @@ namespace Hackaton_test.Models
 
         public List<EventFollower> EventFollowers { get; set; }
         public List<UserAchievement> UserAchievements { get; set; }
+        public List<UserFriend> UserFriends { get; set; }
 
         public User()
         {
             EventFollowers = new List<EventFollower>();
             UserAchievements = new List<UserAchievement>();
+            UserFriends = new List<UserFriend>();
         }
     }
 
@@ -43,5 +45,13 @@ namespace Hackaton_test.Models
         public User Follower { get; set; }
         public int EventId { get; set; }
         public Poster Event { get; set; }
+    }
+
+    public class UserFriend
+    {
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public int FriendId { get; set; }
+        public User Friend { get; set; }
     }
 }
