@@ -3,9 +3,12 @@
 namespace Hackaton_test.Models
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 49eb56b697953001b6e4dc113ddc2e07f32e0725
+=======
+>>>>>>> 726ceeee75b0efa92080d672d922467c0d31e7ab
     public class User
     {
         public int UserId { get; set; }
