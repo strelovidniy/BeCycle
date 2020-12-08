@@ -1,9 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace Hackaton_test.Services
 {
     public class GeolocationService
     {
+        public  List<string> geolocationList = new List<string>()
+        {
+            "49.820086,24.024571",
+            "49.826936,24.023883",
+            "49.829526,24.015136",
+            "49.826688,24.009532",
+            "49.847279,24.068100"
+        };
+        
         public (double? latitude, double? longitude) GetGeolocation()
         {
             //  This example duplicates the following CURL request:
@@ -13,7 +24,7 @@ namespace Hackaton_test.Services
             //  See Global Unlock Sample for sample code.
 
             var rest = new Chilkat.Rest();
-
+            
             //  Connect to the Google API REST server.
             var bTls = true;
             var port = 443;
