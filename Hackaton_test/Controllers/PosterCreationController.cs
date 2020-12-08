@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Hackaton_test.Controllers
 {
-    [Authorize]
-    public class MapController : Controller
+    public class PosterCreationController : Controller
     {
-        [AllowAnonymous]
+        // GET
         public IActionResult Index()
         {
             return View();
