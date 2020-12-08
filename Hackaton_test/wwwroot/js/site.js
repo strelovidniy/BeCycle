@@ -1,4 +1,18 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Sidebar
 
-// Write your JavaScript code.
+$(".option").hover(function () {
+    $(this).css('cursor', 'pointer');
+});
+
+$(".active").hover(function () {
+    $(this).css('background-color', '#161E2E');
+});
+
+$('.option').click(function (e) {
+    $('.option').removeClass('active');
+
+    var $this = $(this);
+    if (!$this.hadClass('active')) {
+        $this.addClass('active');
+    }
+});
