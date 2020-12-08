@@ -14,6 +14,7 @@ namespace Hackaton_test.Controllers
             {
                 poster = db.Posters.First(poster => poster.PosterId == id);
             }
+            
             return View(poster);
         }
     }

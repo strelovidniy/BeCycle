@@ -1,31 +1,16 @@
+using Hackaton_test.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Hackaton_test.Models.GoogleMaps;
-using Newtonsoft.Json;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hackaton_test.Controllers
 {
+    [Authorize]
     public class MapController : Controller
     {
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
-        }
-
-        public JsonResult GetData() 
-        {
-            var Destinations = new List<DestinationPoint>();
-            Destinations.Add(new DestinationPoint() 
-            {
-                DestinationPointId = 1, 
-                PlaceName = "Підгорецький замок",
-                GeoLat = 49.943126779033044, 
-                GeoLong = 24.983551168831774, Traffic = 1.0
-            });
-
-            return Json(Destinations, new JsonSerializerSettings());
         }
     }
 }
