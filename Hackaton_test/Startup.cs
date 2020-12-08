@@ -1,23 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Hackaton_test
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -34,8 +26,8 @@ namespace Hackaton_test
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "713332156036-tnnlfmbjjfscmqn75lfpqn88udsohdsd.apps.googleusercontent.com";
-                    options.ClientSecret = "4bWOT3YhFBLw1agomAMhMjUY";
+                    options.ClientId = "277634872617-ss8cfc73ecivm08lmvpub2hsgrlt4dit.apps.googleusercontent.com";
+                    options.ClientSecret = "ysCg9Itl4IW7ZSvAs1cE5ZG5";
                 });
 
             services.AddControllersWithViews();
