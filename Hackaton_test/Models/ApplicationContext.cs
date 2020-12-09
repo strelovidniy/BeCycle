@@ -1,9 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
 {
+
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }

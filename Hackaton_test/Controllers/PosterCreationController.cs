@@ -13,15 +13,14 @@ namespace Hackaton_test.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            Poster poster = new Poster();
-            return View(poster);
+            return View();
         }
         [HttpPost]
         public IActionResult NewPoster(Poster poster, User user)
         {
             string posterData = $"Title: {poster.Title}, Description: {poster.Description}," +
-                $" EventDate: {poster.EventDate}, Publication Date: {poster.PublicationDate = DateTime.Now}, " +
-                $"Sport Type: {poster.SportType}, Author: {poster.Author = user}," +
+                $" EventDate: {poster.EventDate},  " +
+                $"Sport Type: {poster.SportType}, " +
                 $" AuthorId: {poster.AuthorId = user.UserId}";
                
 

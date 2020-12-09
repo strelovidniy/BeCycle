@@ -22,17 +22,22 @@ ul{
 }
 
 .sidebar {
+    position: absolute;
     height: 95vh;
     width: 270px;
     color: #E8E9EA;
     margin-top: 2.2vh;
     margin-left: 1vh;
     border-radius: 10px;
-    background-image: url("/images/sidebar-bg.jpg");
     background-position: initial;
     background-repeat: no-repeat;
-    display: flex;
+    display: none;
     flex-direction: column;
+    border-radius: 30px;
+
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+    background: transparent;
+    backdrop-filter: blur(20px);
 }
 
 .sidebar-body {
@@ -42,6 +47,7 @@ ul{
     display: flex;
     flex-direction: column;
     padding: 10px;
+    padding-top: 20px;
 }
 
 .sidebar-body-content{
@@ -123,21 +129,24 @@ ul{
 
 
 main{
-    margin: 2rem 3.5rem;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 2rem;
+    padding-left: 20rem;
+    background-image: url("/images/background-main-page.svg");
+    background-size: cover;
+    background-position: center;
 }
 
 .poster {
-    width: 300px;
-    height: 350px;
-
-    
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+    width: 250px;
+    height: auto;
+    padding: 2rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    background: transparent;
+    backdrop-filter: blur(10px);
     border-radius: 30px;
-
-    color: black;
+    color: white;
 }
 
 .settings {

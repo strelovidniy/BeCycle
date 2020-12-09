@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Http;
 
 namespace Hackaton_test.Controllers
 {
@@ -24,7 +25,8 @@ namespace Hackaton_test.Controllers
         public async Task<IActionResult> GoogleResponse()
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            var claims = result.Principal?.Identities.FirstOrDefault().Claims.Select(claims => new { claims.Type, claims.Value });
+            var claims = result.Principal?.Identities.FirstOrDefault().Claims
+                .Select(claims => new { claims.Type, claims.Value });
             var dictionary = claims.ToDictionary(key =>
             {
                 var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
@@ -32,20 +34,29 @@ namespace Hackaton_test.Controllers
             }, value => value.Value);
             await using (var dbContext = new ApplicationContext())
             {
-                var dbUser = dbContext.Users.Where(user => user.Email == dictionary["emailaddress"]);
-                var nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@').Aggregate("", (s, c) => s + c);
-                if (dbUser.Count() == 0)
+                var dbUser = await dbContext.Users.FindAsync(dictionary["emailaddress"]);
+                    //.Where(user => user.Email == dictionary["emailaddress"]);
+               
+                if (dbUser == null)
                 {
-                    dbContext.Users.Add(new User()
+                    var nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@')
+                        .Aggregate("", (s, c) => s + c);
+                    var registeredUser = await dbContext.Users.AddAsync(new User()
                     {
                         Email = dictionary["emailaddress"], FirstName = dictionary["givenname"],
                         LastName = dictionary["surname"], NickName = nickName
                     });
-                }
 
-                await dbContext.SaveChangesAsync(true);
+                    HttpContext.Session.SetInt32("UserId", registeredUser.Entity.UserId);
+                    await dbContext.SaveChangesAsync(true);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32("UserId", dbUser.UserId);
+                }
             }
 
+            ViewData["UserId"] = HttpContext.Session.Get("UserId");
             return Redirect("~/Home");
         }
     }

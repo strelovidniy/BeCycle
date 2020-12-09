@@ -1,4 +1,5 @@
-﻿@model List<Poster>
+﻿@using Microsoft.AspNetCore.Http
+@model List<Poster>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -33,7 +34,7 @@
                 
         </div>
         <div class="profile-information">
-            <h4 class="name-surname">Name Surname</h4>
+            <h4 class="name-surname">@ViewData["UserId"]</h4>
             <p class="view-profile">View profile</p>
         </div>
         <div class="profile-settings">
