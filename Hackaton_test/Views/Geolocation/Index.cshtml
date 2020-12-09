@@ -11,12 +11,19 @@
     <style>
         html, body, #map 
         {
-            height: 100%;
-            margin: 0px;
-            padding: 0px
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
         }
 
-        #autoc
+        #bar 
+        {
+            position: absolute;
+            right: 50vw;
+            top: 15px;
+        }
+
+        #autoc 
         {
             width: 100%;
             box-sizing: border-box;
@@ -69,9 +76,6 @@
 
 <body>
 <div id="map"></div>
-<div id="bar">
-    <p class="auto"><input type="text" id="autoc"/></p>
-    <p><a id="clear" href="#">Click here</a> to clear map.</p>
-</div>
+
 </body>
 </html>
