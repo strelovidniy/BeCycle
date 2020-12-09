@@ -24,29 +24,26 @@
         }
     </style>
     <div class="form">
-        <form name="poster">
-            <p>
-                Name:<br />
-                <input type="text">
-            </p>
-            <p>
-                Description:<br />
-                <textarea name="Description" cols="50" rows="5"></textarea>
-            </p>
-            <p>
-                Date of the event:
-                <input type="date">
-            </p>
-            <p>
-                Choose the type of cycling:<br/>
-                <select size="3">
-                    <option selected>Choose the type</option>
-                    <option value="@SportType.Extreme">Extreme</option>
-                    <option value="@SportType.ForestRide">Forest ride</option> 
-                    <option value="@SportType.Race">Race</option> 
-                </select>
-            </p>
-        </form>
+        <h3>Creating a new poster</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.LabelFor(item => item.Title, "Enter poster name")
+            <br />
+            @Html.TextBoxFor(item => item.Title)
+            <br /><br />
+            @Html.LabelFor(item => item.Description, "Enter description")
+            <br />
+            @Html.TextAreaFor(item => item.Description, 10, 9, null)
+            <br />
+            @Html.LabelFor(item => item.EventDate, "Enter event date dd/mm/yyyy")
+            <br />
+            @Html.TextBoxFor(item => item.EventDate, "{0:d MMM yyyy}")
+            <br />
+            @Html.LabelFor(item => item.EventDate, "Enter event date dd/mm/yyyy")
+            <br />
+       
+            <p><input type="submit" value="Отправить" /></p>
+        }
     </div>
 </div>
 </body>

@@ -28,13 +28,13 @@ namespace Hackaton_test.Controllers
             var claims = result.Principal?.Identities.FirstOrDefault().Claims.Select(claims => new { claims.Type, claims.Value });
             var dictionary = claims.ToDictionary(key =>
             {
-                string[] splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
                 return splitStrings[^1];
             }, value => value.Value);
-            await using (ApplicationContext dbContext = new ApplicationContext())
+            await using (var dbContext = new ApplicationContext())
             {
                 var dbUser = dbContext.Users.Where(user => user.Email == dictionary["emailaddress"]);
-                string nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@').Aggregate("", (s, c) => s + c);
+                var nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@').Aggregate("", (s, c) => s + c);
                 if (dbUser.Count() == 0)
                 {
                     dbContext.Users.Add(new User()
