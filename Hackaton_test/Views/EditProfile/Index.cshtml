@@ -3,6 +3,46 @@
 
 }
 
-<div class="heading">
+<div class="editing">
+    <div class="editing-heading">
+        <h1>Edit Profile</h1>
+    </div>
 
+    <div class="editing-form-wrapper">
+        <div class="middle">
+            <h2>Information</h2>
+            <form id="editing-form">
+                <div class="first-information">
+                    <div class="input-option">
+                        <label for="username-input">Username</label>
+                        <input id="username-input" type="text" placeholder="Username" value="" required />
+                    </div>
+
+                    <div class="input-option readonly">
+                        <label for="name-input">Name</label>
+                        <input id="name-input" type="text" placeholder="Name" value="" readonly="readonly" required />
+                    </div>
+
+                    <div class="input-option readonly">
+                        <label for="surname-input">Surname</label>
+                        <input id="surname-input" type="text" placeholder="Surname" value="" readonly="readonly" required />
+                    </div>
+                </div>
+
+                <div class="second-information">
+                    <div class="input-option readonly">
+                        <label for="email-input">Email</label>
+                        <input id="email-input" type="text" placeholder="Email" value="test@mail.com" readonly="readonly" />
+                    </div>
+
+                    <div class="input-option">
+                        <label for="phone-input">Phone</label>
+                        <input id="phone-input" type="tel" placeholder="Phone" value="" required autocomplete="off"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="editing-button" type="submit">Save</button>
 </div>
