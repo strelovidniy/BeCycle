@@ -2,6 +2,7 @@
 using System.Linq;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +23,9 @@ namespace Hackaton_test.Controllers
             {
                list = db.Posters.Where(poster => poster.SportType == sportType).ToList();
             }
-
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
             return View(list);
         }
     }

@@ -41,6 +41,7 @@ namespace Hackaton_test.Models
         public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
             modelBuilder.ToTable("User").HasAlternateKey(u => u.NickName);
+            modelBuilder.HasAlternateKey(u => u.Email);
             modelBuilder.Property(n => n.NickName).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.City).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.FirstName).IsRequired().HasColumnType("nvarchar(50)");

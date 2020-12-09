@@ -1,10 +1,8 @@
-﻿@using Microsoft.AspNetCore.Http
-@model List<Poster>
+﻿@model List<Poster>
 
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="hamburger-menu">
     <i class="fas fa-bars"></i>
 </div>
@@ -28,14 +26,14 @@
     </div>
     <div class="sidebar-bottom">
         <div class="profile-picture">
-                
+
         </div>
         <div class="profile-information">
-            <h4 class="name-surname">@ViewData["UserId"]</h4>
+            <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
             <p class="view-profile">View profile</p>
         </div>
         <div class="profile-settings">
-            <img class="icon settings" src="~/icons/settings.svg"/>
+            <img class="icon settings" src="~/icons/settings.svg" />
         </div>
     </div>
 </div>
