@@ -28,7 +28,5 @@ namespace Hackaton_test.Controllers
 
             return View(posters);
         }
-
-        public IActionResult Privacy() => View();
     }
 }
