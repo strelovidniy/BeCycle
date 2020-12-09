@@ -16,7 +16,7 @@ namespace Hackaton_test.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult PosterCreation(Poster poster)
+        public IActionResult Index(Poster poster)
         {
             string posterData = $"Title: {poster.Title}, Description: {poster.Description}," +
                 $" EventDate: {poster.EventDate},  " +
