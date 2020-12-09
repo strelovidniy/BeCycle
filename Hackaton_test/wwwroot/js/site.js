@@ -14,7 +14,7 @@ $(".option.map").click(function () {
     document.location.href = map_url;
 });
 
-$(".option.poster").click(function () {
+$(".option.poster-create").click(function () {
     var poster_url = $("#posterCreation-link").attr("href");
     document.location.href = poster_url;
 });
@@ -22,6 +22,14 @@ $(".option.poster").click(function () {
 $(".option.search").click(function () {
     var search_url = $("#search-link").attr("href");
     document.location.href = search_url;
+});
+
+$(".profile-settings").click(function () {
+    document.location.href = "editprofile";
+});
+
+$(".profile-settings").hover(function () {
+    $(this).css('cursor', 'pointer');
 });
 
 // Active tab
@@ -41,14 +49,3 @@ $('.option').click(function (e) {
 
 
 // Mobile Nav
-$(".hamburger-menu").click(function () {
-    $(".sidebar-mobile").css('display', 'flex');
-    $('.sidebar-mobile').css('width', '95vw');
-});
-
-$(".close-menu").click(function() {
-    $('.sidebar-mobile').css('width', '0');
-    window.setTimeout(function() {
-        $(".sidebar-mobile").css('display', 'none');
-    }, 270);
-});
