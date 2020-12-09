@@ -13,7 +13,7 @@ namespace Hackaton_test.Controllers
     [Route("account")]
     public class AccountController : Controller
     {
-        [Route("google-login")]
+        [Route("google-signin")]
         public IActionResult GoogleLogin()
         {
             var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };

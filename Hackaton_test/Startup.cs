@@ -22,7 +22,7 @@ namespace Hackaton_test
                 })
                 .AddCookie(options =>
                 {
-                    options.LoginPath = "/account/google-login";
+                    options.LoginPath = "/account/google-signin";
                 })
                 .AddGoogle(options =>
                 {
