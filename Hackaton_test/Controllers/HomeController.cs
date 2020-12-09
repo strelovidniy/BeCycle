@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,19 +14,16 @@ namespace Hackaton_test.Controllers
 
         public HomeController(ILogger<HomeController> logger) => _logger = logger;
         
-        //TODO: add pull out from database
         [AllowAnonymous]
-        public IActionResult Index(SportType sportType)
+        public IActionResult Index(SportType sportType = 0)
         {
-            //pull out all posters that have the same sporttype
-            var posters = new List<Poster>()
+            List<Poster> list;
+            using (var db = new ApplicationContext())
             {
-                new Poster() {PosterId = 1,Title = "first",Description = "smth1",SportType = SportType.Extreme}, 
-                new Poster() {PosterId = 2,Title = "second",Description = "smth2", SportType = SportType.Extreme},
-                new Poster() {PosterId = 3, Title = "third",Description = "smth3",SportType = SportType.Extreme},
-            };
+               list = db.Posters.Where(poster => poster.SportType == sportType).ToList();
+            }
 
-            return View(posters);
+            return View(list);
         }
     }
 }
