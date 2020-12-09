@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
 {
 
-    public class User
+    public class User 
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

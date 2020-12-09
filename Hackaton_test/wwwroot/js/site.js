@@ -29,6 +29,11 @@ $(".option.poster-create").click(function () {
     document.location.href = poster_url;
 });
 
+$(".option.poster-create").click(function () {
+    var goJourney_url = $("#GoJourney").attr("href");
+    document.location.href = goJourney_url;
+});
+
 $(".option.search").click(function () {
     var search_url = $("#search-link").attr("href");
     document.location.href = search_url;

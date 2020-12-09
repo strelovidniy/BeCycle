@@ -21,15 +21,16 @@
             -webkit-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+            resize: none;
         }
     </style>
     <div class="form">
         <h3>Creating a new poster</h3>
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Index", "NewPoster", FormMethod.Post))
         {
             @Html.LabelFor(item => item.Title, "Enter poster name")
             <br />
-            @Html.TextBoxFor(item => item.Title)
+            @Html.TextBoxFor(item => item.Title, "Title")
             <br /><br />
             @Html.LabelFor(item => item.Description, "Enter description")
             <br />
@@ -39,10 +40,10 @@
             <br />
             @Html.TextBoxFor(item => item.EventDate, "{0:d MMM yyyy}")
             <br />
-            @Html.LabelFor(item => item.EventDate, "Enter event date dd/mm/yyyy")
+            @Html.LabelFor(item => item.EventDate, "Choose cycling type")
             <br />
-       
-            <p><input type="submit" value="Отправить" /></p>
+            @Html.DropDownListFor(item => item.SportType, new SelectList(new string[] {"Extreme", "Race", "ForestRide"}))
+            <p><input type="submit" value="Send" /></p>
         }
     </div>
 </div>
