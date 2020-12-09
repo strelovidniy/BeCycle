@@ -49,3 +49,10 @@ $('.option').click(function (e) {
 
 
 // Mobile Nav
+$(".hamburger-menu").click(function() {
+    $(".sidebar-mobile").css('left', '0');
+});
+
+$(".close-menu").click(function() {
+    $(".sidebar-mobile").css('left', '-400px');
+});
