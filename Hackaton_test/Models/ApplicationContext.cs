@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Hackaton_test.Models
@@ -21,9 +22,17 @@ namespace Hackaton_test.Models
             modelBuilder.Entity<UserFriend>().HasKey(uf => new {uf.FriendId, uf.UserId});
         }
 
-      
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-            optionsBuilder.UseSqlServer(@"Server=WORKSTATION\WORKSTATION; Database=HackatonDB; Trusted_Connection=True");
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = @"hackatondbdbserver.database.windows.net";
+            builder.UserID = "HackatonTeam";
+            builder.Password = "Hackaton!TopTeam";
+            builder.InitialCatalog = "HackatonDB";
+            optionsBuilder.UseSqlServer(builder.ConnectionString);
+        }
+           
     }
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
