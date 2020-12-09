@@ -6,7 +6,6 @@ namespace Hackaton_test.Controllers
     [Authorize]
     public class MapController : Controller
     {
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

@@ -40,7 +40,7 @@ namespace Hackaton_test.Models
         {
             modelBuilder.ToTable("User").HasAlternateKey(u => u.NickName);
             modelBuilder.Property(n => n.NickName).IsRequired().HasColumnType("nvarchar(50)");
-            modelBuilder.Property(u => u.City).IsRequired().HasColumnType("nvarchar(50)");
+            modelBuilder.Property(u => u.City).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.FirstName).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.LastName).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.Email).IsRequired().HasColumnType("nvarchar(50)");
