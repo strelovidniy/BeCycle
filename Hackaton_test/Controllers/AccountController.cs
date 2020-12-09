@@ -56,6 +56,8 @@ namespace Hackaton_test.Controllers
                     HttpContext.Session.SetInt32("UserId", dbUser.UserId);
                 }
             }
+
+            ViewData["UserId"] = HttpContext.Session.Get("UserId");
             return Redirect("~/Home");
         }
     }
