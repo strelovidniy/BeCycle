@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Views\Registration\" />
+    <Folder Include="Views\NewFolder\" />
     <Folder Include="wwwroot\icons\" />
   </ItemGroup>
 
