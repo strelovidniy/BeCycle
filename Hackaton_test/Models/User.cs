@@ -14,7 +14,7 @@ namespace Hackaton_test.Models
         public string PhoneNumber { get; set; }
         public string City { get; set; }
         public int Distance { get; set; }
-
+        public string ImageURL { get; set; }
         public List<Poster> Posters { get; set; }
 
         public List<EventFollower> EventFollowers { get; set; }

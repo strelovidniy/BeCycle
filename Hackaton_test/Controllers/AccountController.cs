@@ -34,12 +34,13 @@ namespace Hackaton_test.Controllers
             await using (ApplicationContext dbContext = new ApplicationContext())
             {
                 var dbUser = dbContext.Users.Where(user => user.Email == dictionary["emailaddress"]);
+                string nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@').Aggregate("", (s, c) => s + c);
                 if (dbUser.Count() == 0)
                 {
                     dbContext.Users.Add(new User()
                     {
                         Email = dictionary["emailaddress"], FirstName = dictionary["givenname"],
-                        LastName = dictionary["surname"], NickName = dictionary["emailaddress"]
+                        LastName = dictionary["surname"], NickName = nickName
                     });
                 }
 

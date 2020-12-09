@@ -45,6 +45,7 @@ namespace Hackaton_test.Models
             modelBuilder.Property(u => u.LastName).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.Email).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.PhoneNumber).HasColumnType("nvarchar(15)");
+            modelBuilder.Property(u => u.ImageURL).HasColumnType("nvarchar(500)");
 
             modelBuilder.HasMany(p => p.EventFollowers)
                 .WithOne(ef => ef.Follower)
