@@ -21,8 +21,7 @@ namespace Hackaton_test.Models
             modelBuilder.Entity<UserAchievement>().HasKey(ua => new {ua.AchievementId, ua.UserId});
             modelBuilder.Entity<UserFriend>().HasKey(uf => new {uf.FriendId, uf.UserId});
         }
-
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new SqlConnectionStringBuilder();
@@ -56,7 +55,7 @@ namespace Hackaton_test.Models
                 .HasForeignKey(f => f.FriendId).OnDelete(DeleteBehavior.NoAction);
         }
     }
-
+    
     public class PosterConfiguration : IEntityTypeConfiguration<Poster>
     {
         public void Configure(EntityTypeBuilder<Poster> modelBuilder)
