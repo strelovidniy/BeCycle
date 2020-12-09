@@ -13,8 +13,7 @@ namespace Hackaton_test.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            Poster poster = new Poster();
-            return View(poster);
+            return View();
         }
         [HttpPost]
         public IActionResult NewPoster(Poster poster, User user)
