@@ -51,7 +51,7 @@ ul{
 }
 
 .active {
-    background-color: #161E2E;
+    background-color: rgba(255, 255, 255, .3);
     border-radius: 5px;
 }
 
@@ -65,7 +65,7 @@ ul{
 }
 
 .option:hover {
-    background-color: #1a2438;
+    background-color: rgba(255, 255, 255, .2);
     border-radius: 5px;
 }
 

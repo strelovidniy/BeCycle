@@ -16,7 +16,7 @@ $(".option.map").click(function () {
 
 // Active tab
 $(".active").hover(function () {
-    $(this).css('background-color', '#161E2E');
+    $(this).css('background-color', "rgba(255, 255, 255, .3)");
 });
 
 $('.option').click(function (e) {
