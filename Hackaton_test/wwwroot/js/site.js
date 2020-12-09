@@ -46,6 +46,13 @@ $('.option').click(function (e) {
     }
 });
 
+$(".settings").mouseover(function() {
+    $(this).css('transform', 'rotate(180deg)');
+});
+
+$(".settings").mouseleave(function () {
+    $(this).css('transform', 'rotate(-180deg)');
+});
 
 
 // Mobile Nav

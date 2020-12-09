@@ -140,6 +140,9 @@ main{
     color: black;
 }
 
+.settings {
+    transition: .7s ease;
+}
 
 @media only screen
 and (min-device-width: 769px)
