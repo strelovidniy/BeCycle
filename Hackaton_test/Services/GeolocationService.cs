@@ -2,7 +2,7 @@
 
 namespace Hackaton_test.Services
 {
-    public class GeolocationService:IGeolocationService
+    public class GeolocationService : IGeolocationService
     {
         private List<string> geolocations = new List<string>()
         {   "49.848540,24.040773",
@@ -12,6 +12,7 @@ namespace Hackaton_test.Services
             "49.797176,23.901201",
             "49.812737,23.893313"
         };
+
         public List<string> GetGeolocations()
         {
             return geolocations;
@@ -21,6 +22,7 @@ namespace Hackaton_test.Services
         {
             geolocations.Add(geolocation);
         }
+
         public void RemoveGeolocation(string geolocation)
         {
             geolocations.Remove(geolocation);
