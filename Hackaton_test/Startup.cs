@@ -26,8 +26,8 @@ namespace Hackaton_test
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "277634872617-ss8cfc73ecivm08lmvpub2hsgrlt4dit.apps.googleusercontent.com";
-                    options.ClientSecret = "ysCg9Itl4IW7ZSvAs1cE5ZG5";
+                    options.ClientId = "713332156036-l80sb9pr0ggjuurad736s37c6k8gfdsr.apps.googleusercontent.com";
+                    options.ClientSecret = "5px-jceTgtMb2OHFrtF9aJn9";
                 });
 
             services.AddControllersWithViews();
