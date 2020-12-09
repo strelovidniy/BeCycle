@@ -26,11 +26,11 @@
     </style>
     <div class="form">
         <h3>Creating a new poster</h3>
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Index", "NewPoster", FormMethod.Post))
         {
             @Html.LabelFor(item => item.Title, "Enter poster name")
             <br />
-            @Html.TextBoxFor(item => item.Title)
+            @Html.TextBoxFor(item => item.Title, "Title")
             <br /><br />
             @Html.LabelFor(item => item.Description, "Enter description")
             <br />
@@ -42,7 +42,7 @@
             <br />
             @Html.LabelFor(item => item.EventDate, "Choose cycling type")
             <br />
-            @Html.RadioButtonFor(item => item.SportType, "Extreme")
+            @Html.DropDownListFor(item => item.SportType, new SelectList(new string[] {"Extreme", "Race", "ForestRide"}))
             <p><input type="submit" value="Send" /></p>
         }
     </div>
