@@ -4,18 +4,22 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <div class="sidebar-body">
         <div class="sidebar-body-content">
-            <div class="option home active">
-                <img class="icon home" src="~/icons/home.svg" /><a id="home-link" href="#">Home</a>
+            <div class="option active">
+                <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="#">Home</a>
             </div>
-            <div class="option map">
-                <img class="icon map" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
+            <div class="option">
+                <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
             </div>
-            <div class="option map">
-                <img class="icon poster" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
-                </div>
+            <div class="option">
+                <img class="icon" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
+            </div>
         </div>
     </div>
     <div class="sidebar-bottom">
@@ -28,6 +32,39 @@
         </div>
         <div class="profile-settings">
             <img class="icon settings" src="~/icons/settings.svg"/>
+        </div>
+    </div>
+</div>
+
+<div class="sidebar-mobile">
+    <div class="sidebar-mobile-body">
+        <div class="sidebar-mobile-body-content">
+            <div class="option active">
+                <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="#">Home</a>
+            </div>
+            <div class="close-menu">
+                <img class="icon" src="icons/cross.svg" />
+            </div>
+            <div class="option">
+                <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
+            </div>
+            <div class="option">
+                <img class="icon" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-mobile-bottom">
+        <div class="user">
+            <div class="profile-picture">
+
+            </div>
+            <div class="profile-information">
+                <h4 class="name-surname">Name Surname</h4>
+                <p class="view-profile">View profile</p>
+            </div>
+        </div>
+        <div class="profile-settings">
+            <img class="icon settings" src="~/icons/settings.svg" />
         </div>
     </div>
 </div>

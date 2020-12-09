@@ -27,3 +27,18 @@ $('.option').click(function (e) {
         $this.addClass('active');
     }
 });
+
+
+
+// Mobile Nav
+$(".hamburger-menu").click(function () {
+    $(".sidebar-mobile").css('display', 'flex');
+    $('.sidebar-mobile').css('width', '95vw');
+});
+
+$(".close-menu").click(function() {
+    $('.sidebar-mobile').css('width', '0');
+    window.setTimeout(function() {
+        $(".sidebar-mobile").css('display', 'none');
+    }, 270);
+});
