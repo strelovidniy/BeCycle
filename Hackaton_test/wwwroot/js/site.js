@@ -1,4 +1,14 @@
-﻿// Sidebar
+﻿$(document).ready(function () {
+    $(".sidebar").css('display', 'flex');
+    $(".sidebar").css({ 'left': '-400px' }).animate({
+        'left': '-0px'
+    });
+});
+
+
+
+
+// Sidebar
 $(".option").hover(function () {
     $(this).css('cursor', 'pointer');
 });
@@ -30,7 +40,14 @@ $(".option.search").click(function () {
 });
 
 $(".profile-settings").click(function () {
-    document.location.href = "editprofile";
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function() {
+        document.location.href = "editprofile";
+    }, 1000);
+
 });
 
 $(".profile-settings").hover(function () {
