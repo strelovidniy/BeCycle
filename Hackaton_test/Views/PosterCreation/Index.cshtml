@@ -12,9 +12,42 @@
 </head>
 <body>
 <div>
-    <form name="text">
-        <input type="text">
-    </form>
+    <style>
+        .form {
+            background: #ccc;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div class="form">
+        <form name="poster">
+            <p>
+                Name:<br />
+                <input type="text">
+            </p>
+            <p>
+                Description:<br />
+                <textarea name="Description" cols="50" rows="5"></textarea>
+            </p>
+            <p>
+                Date of the event:
+                <input type="date">
+            </p>
+            <p>
+                Choose the type of cycling:<br/>
+                <select size="3">
+                    <option selected>Choose the type</option>
+                    <option value="@SportType.Extreme">Extreme</option>
+                    <option value="@SportType.ForestRide">Forest ride</option> 
+                    <option value="@SportType.Race">Race</option> 
+                </select>
+            </p>
+        </form>
+    </div>
 </div>
 </body>
 </html>
