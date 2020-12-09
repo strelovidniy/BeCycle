@@ -1,9 +1,11 @@
 ﻿using Hackaton_test.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hackaton_test.Controllers
 {
+    [Authorize]
     public class PosterController:Controller
     {
         public IActionResult Index(int id)

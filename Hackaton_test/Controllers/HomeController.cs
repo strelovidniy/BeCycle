@@ -15,7 +15,6 @@ namespace Hackaton_test.Controllers
         
         //TODO: add pull out from database
 
-        [AllowAnonymous]
         public IActionResult Index(SportType sportType)
         {
             //pull out all posters that have the same sporttype

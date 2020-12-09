@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Hackaton_test.Controllers
 {
-    [AllowAnonymous, Route("account")]
+    [Route("account")]
     public class AccountController : Controller
     {
         [Route("google-login")]
