@@ -25,7 +25,7 @@ namespace Hackaton_test.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            var builder = new SqlConnectionStringBuilder();
             builder.DataSource = @"hackatondbdbserver.database.windows.net";
             builder.UserID = "HackatonTeam";
             builder.Password = "Hackaton!TopTeam";
