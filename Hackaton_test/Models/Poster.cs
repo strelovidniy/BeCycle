@@ -3,14 +3,6 @@ using System.Collections.Generic;
 
 namespace Hackaton_test.Models
 {
-
-    public enum SportType
-    {
-        Extreme, 
-        Race,
-        ForestRide
-    }
-
     public class Poster
     {
         public int PosterId { get; set; }
