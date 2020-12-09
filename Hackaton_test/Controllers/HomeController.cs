@@ -14,7 +14,7 @@ namespace Hackaton_test.Controllers
         public HomeController(ILogger<HomeController> logger) => _logger = logger;
         
         //TODO: add pull out from database
-
+        [AllowAnonymous]
         public IActionResult Index(SportType sportType)
         {
             //pull out all posters that have the same sporttype
