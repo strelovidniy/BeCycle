@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace Hackaton_test.Controllers
 {
@@ -16,7 +17,11 @@ namespace Hackaton_test.Controllers
             {
                 poster = db.Posters.First(poster => poster.PosterId == id);
             }
-            
+
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+
             return View(poster);
         }
     }

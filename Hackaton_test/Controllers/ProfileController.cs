@@ -14,7 +14,7 @@ namespace Hackaton_test.Controllers
 
                 if (ViewData["User"] == null)
                 {
-                    return Redirect("~/Home");
+                    return Redirect("~/");
                 }
             }
 

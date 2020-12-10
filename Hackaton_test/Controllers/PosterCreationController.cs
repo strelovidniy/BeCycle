@@ -12,12 +12,20 @@ namespace Hackaton_test.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Index(Poster poster)
         {
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+
             var posterData = $"Title: {poster.Title}, Description: {poster.Description}," +
                              $" EventDate: {poster.EventDate},  " +
                              $"Sport Type: {poster.SportType}, " +

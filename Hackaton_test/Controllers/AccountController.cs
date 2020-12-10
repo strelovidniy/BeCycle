@@ -58,8 +58,16 @@ namespace Hackaton_test.Controllers
                     HttpContext.Session.SetString("UserName", registeredUser.Entity.FirstName);
                     HttpContext.Session.SetString("UserSurname", registeredUser.Entity.LastName);
                     HttpContext.Session.SetString("UserNickname", registeredUser.Entity.NickName);
-                    HttpContext.Session.SetString("UserPhone", registeredUser.Entity.PhoneNumber);
                     HttpContext.Session.SetString("UserEmail", registeredUser.Entity.Email);
+
+                    try
+                    {
+                        HttpContext.Session.SetString("UserPhone", registeredUser.Entity.PhoneNumber);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
 
                     await dbContext.SaveChangesAsync(true);
                 }
@@ -68,8 +76,20 @@ namespace Hackaton_test.Controllers
                     HttpContext.Session.SetInt32("UserId", dbUser.UserId);
                     HttpContext.Session.SetString("UserName", dbUser.FirstName);
                     HttpContext.Session.SetString("UserSurname", dbUser.LastName);
+                    HttpContext.Session.SetString("UserEmail", dbUser.Email);
+                    HttpContext.Session.SetString("UserNickname", dbUser.NickName);
+
+                    try
+                    {
+                        HttpContext.Session.SetString("UserPhone", dbUser.PhoneNumber);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
             }
+
             return RedirectToAction("Index", "Home");
         }
     }
