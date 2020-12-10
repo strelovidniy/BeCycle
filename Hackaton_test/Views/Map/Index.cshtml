@@ -6,13 +6,19 @@
     <meta charset="utf-8">
     <title>Roads API Demo</title>
     <style>
-        html, body, #map 
+        html, body
         {
             position: absolute;
             height: 100vh;
             width: 100vw;
             margin: 0px;
             padding: 0px
+        }
+
+        #map{
+            width: 70vw;
+            height: 100vh;
+            border-radius: 35px;
         }
 
         #panel 
@@ -30,6 +36,7 @@
         #bar 
         {
             background-color: rgba(255, 255, 255, 0.75);
+            height: 40px;
             margin: 8px;
             padding: 4px;
             border-radius: 4px;
@@ -40,6 +47,9 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+
+
     </style>
 
     <script src="https://www.gstatic.com/external_hosted/jquery2.min.js"></script>
@@ -200,7 +210,9 @@
 </head>
 
 <body>
-<div id="map"></div>
+    <div class="content-section">
+        <div id="map"></div>
+    </div>
 <div id="bar">
     <button draggable="false" type="button" aria-pressed="false" style="background: none padding-box rgb(255, 255, 255); display: table-cell; border: 0px; margin: 0px; padding: 0px 17px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; direction: ltr; overflow: hidden; text-align: center; height: 40px; vertical-align: middle; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; font-size: 18px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; min-width: 66px;" id="clear" href="#" aria-expanded="false">Clear map</button>
 </div>

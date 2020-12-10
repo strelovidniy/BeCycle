@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-
-
     // Current tab
     if (window.location.href.includes('/home')) {
         $('.home').addClass('active');
