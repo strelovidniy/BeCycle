@@ -16,29 +16,29 @@
                 <div class="first-information">
                     <div class="input-option">
                         <label for="username-input">Username</label>
-                        <input id="username-input" type="text" placeholder="Username" value="@((ViewData["User"] as User).NickName)" readonly="readonly" />
+                        <input id="username-input" type="text" placeholder="Username" value="@((ViewData["User"] as User)?.NickName)" readonly="readonly" />
                     </div>
 
                     <div class="input-option readonly">
                         <label for="name-input">Name</label>
-                        <input id="name-input" type="text" placeholder="Name" value="@((ViewData["User"] as User).FirstName)" readonly="readonly" />
+                        <input id="name-input" type="text" placeholder="Name" value="@((ViewData["User"] as User)?.FirstName)" readonly="readonly" />
                     </div>
 
                     <div class="input-option">
                         <label for="phone-input">Phone</label>
-                        <input id="phone-input" type="text" placeholder="Phone" value="@((ViewData["User"] as User).PhoneNumber)" readonly="readonly" />
+                        <input id="phone-input" type="text" placeholder="Phone" value="@((ViewData["User"] as User)?.PhoneNumber)" readonly="readonly" />
                     </div>
                 </div>
 
                 <div class="second-information">
                     <div class="input-option readonly">
                         <label for="email-input">Email</label>
-                        <input id="email-input" type="text" placeholder="Email" value="@((ViewData["User"] as User).Email)" readonly="readonly" />
+                        <input id="email-input" type="text" placeholder="Email" value="@((ViewData["User"] as User)?.Email)" readonly="readonly" />
                     </div>
                     
                     <div class="input-option readonly">
                         <label for="surname-input">Surname</label>
-                        <input id="surname-input" type="text" placeholder="Surname" value="@((ViewData["User"] as User).LastName)" readonly="readonly" />
+                        <input id="surname-input" type="text" placeholder="Surname" value="@((ViewData["User"] as User)?.LastName)" readonly="readonly" />
                     </div>
                 </div>
             </form>
