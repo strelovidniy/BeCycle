@@ -24,6 +24,7 @@ namespace Hackaton_test.Controllers
             ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
+
             return View();
         }
 
