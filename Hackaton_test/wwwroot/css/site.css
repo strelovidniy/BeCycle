@@ -651,12 +651,12 @@ textarea:hover {
 }
 
 /* --------------------------------------------- MOBILE POSTER CREATION --------------------------------------------- */
-.poster-creation-wrapper {
-    width: 300px;
-    margin-right: 0;
-    padding: 1rem;
-}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .poster-creation-wrapper {
+        width: 300px;
+        margin-right: 0;
+        padding: 1rem;
+    }
 
-.create-poster-form {
-    width: 300px;
+    .create-poster-form { width: 300px; }
 }
