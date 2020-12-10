@@ -24,8 +24,13 @@ namespace Hackaton_test.Controllers
         [HttpPost]
         public IActionResult Index(User user)
         {
-            //TODO: Update User user in database
-            return Redirect("~/Profile");
+            using (var dbContext = new ApplicationContext())
+            {
+                dbContext.Users.Update(user);
+                dbContext.SaveChanges();
+            }
+
+            return Redirect($"~/profile/index?username={user.NickName}");
         }
     }
 }
