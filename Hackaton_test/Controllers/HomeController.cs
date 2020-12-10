@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -27,6 +26,7 @@ namespace Hackaton_test.Controllers
 
             return View(list);
         }
+
         public IActionResult IndexWithSportType(SportType sportType)
         {
             List<Poster> list;
@@ -45,44 +45,43 @@ namespace Hackaton_test.Controllers
         
         public IActionResult Following()
         {
-            List<Poster> list;
-
-            using (var db = new ApplicationContext())
-            {
-            //вибрати всі постери на які підписаний поточний юзер
-          
-               
-                
-                
-                
-            }
-
             ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
-           return View("Index");
+
+            List<Poster> posters;
+
+            using (var dbContext = new ApplicationContext())
+            {
+                posters = dbContext.Posters.Where(poster =>
+                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
+                        .Posters.Contains(poster)).ToList();
+            }
+
+            return View("Index", posters);
         }
         
-        
-        
-      
         public IActionResult StartFollowing(int id)
         {
             ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+
             User currentUser;
             Poster currentPoster;
+
             using (var db = new ApplicationContext())
             {
                 currentUser = db.Users.FirstOrDefault(us => us.UserId == (int)ViewData["UserId"] );
                 currentPoster = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
             }
             
-            EventFollower eventFollower = new EventFollower()
+            var eventFollower = new EventFollower()
             {
                 Event = currentPoster, Follower = currentUser, EventId = id, FollowerId = (int)ViewData["UserId"]
             };
+            
             currentUser.EventFollowers.Add(eventFollower);
             currentPoster.EventFollowers.Add(eventFollower);
+
             return RedirectToAction("Index", "Home");
         }
     }
