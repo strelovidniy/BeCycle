@@ -844,3 +844,24 @@ textarea:hover {
     justify-content: center;
     align-items: center;
 }
+
+/* --------------------------------------------- MOBILE POSTER DETAIL PAGE --------------------------------------------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .poster-detail-section {
+        width: 250px;
+    }
+
+    .poster-detail-eventdate {
+        top: 15px;
+        right: 100px;
+        font-size: .7rem;
+    }
+
+    .poster-detail-description {
+        height: 600px;
+    }
+
+    .poster-detail-sportype {
+        width: 300px;
+    }
+}
