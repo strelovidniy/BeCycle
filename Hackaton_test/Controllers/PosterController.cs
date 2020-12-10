@@ -9,14 +9,13 @@ namespace Hackaton_test.Controllers
     [Authorize]
     public class PosterController:Controller
     {
-        [HttpGet]
         public IActionResult Index(int id)
         {
             Poster poster;
 
             using (var db = new ApplicationContext())
             {
-                poster = db.Posters.FirstOrDefault(p => p.PosterId == (int)id);
+                poster = db.Posters.FirstOrDefault(p => p.PosterId == id);
             }
 
             return View(poster);
