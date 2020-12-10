@@ -125,11 +125,16 @@ $(".profile-settings").hover(function () {
     $(this).css('cursor', 'pointer');
 });
 
+$("#view-profile-link").hover(function () {
+    $(this).css('cursor', 'pointer');
+});
+
 $(".view-profile").click(function () {
     event.preventDefault();
     $(".sidebar").css({ 'left': '0px' }).animate({
         'left': '-400px'
     });
+
 
     window.setTimeout(function () {
         document.location.href = $("#view-profile-link").attr("href");
