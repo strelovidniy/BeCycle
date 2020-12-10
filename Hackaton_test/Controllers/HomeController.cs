@@ -43,23 +43,6 @@ namespace Hackaton_test.Controllers
             return View("Index", list);
         }
         
-        public IActionResult Following()
-        {
-            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
-
-            List<Poster> posters;
-
-            using (var dbContext = new ApplicationContext())
-            {
-                posters = dbContext.Posters.Where(poster =>
-                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
-                        .Posters.Contains(poster)).ToList();
-            }
-
-            return View("Index", posters);
-        }
         
         public IActionResult StartFollowing(int id)
         {
@@ -81,6 +64,21 @@ namespace Hackaton_test.Controllers
             
             currentUser.EventFollowers.Add(eventFollower);
             currentPoster.EventFollowers.Add(eventFollower);
+            
+            List<Poster> posters = new List<Poster>(){new Poster(){PosterId = 100, Title = "lol", Description = "Dec"}};
+
+            // using (var dbContext = new ApplicationContext())
+            // {
+            //     posters = dbContext.Posters.Where(poster =>
+            //         dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
+            //             .Posters.Contains(poster)).ToList();
+            // }
+
+            return View("Index", posters);
+            
+            
+            
+            
 
             return RedirectToAction("Following", "Home");
         }
