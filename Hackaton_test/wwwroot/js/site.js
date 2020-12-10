@@ -56,9 +56,6 @@
 
 
 // Sidebar
-$(".option").hover(function () {
-    $(this).css('cursor', 'pointer');
-});
 
 // Redirecting
 $(".option.home").click(function () {
@@ -121,12 +118,32 @@ $(".profile-settings").click(function (event) {
 
 });
 
-$(".profile-settings").hover(function () {
-    $(this).css('cursor', 'pointer');
+$('.profile-settings').mouseenter(function () {
+    $(follower).css({
+        transform: "scale(1.1)",
+        'background-color': "rgba(0,0,0,.005)"
+    });
 });
 
-$("#view-profile-link").hover(function () {
-    $(this).css('cursor', 'pointer');
+$('.profile-settings').mouseleave(function () {
+    $(follower).css({
+        transform: "scale(1)",
+        'background-color': "rgba(255,255,255,.027)"
+    });
+});
+
+$('#view-profile-link').mouseenter(function () {
+    $(follower).css({
+        transform: "scale(1.1)",
+        'background-color': "rgba(0,0,0,.005)"
+    });
+});
+
+$('#view-profile-link').mouseleave(function () {
+    $(follower).css({
+        transform: "scale(1)",
+        'background-color': "rgba(255,255,255,.027)"
+    });
 });
 
 $(".view-profile").click(function () {
@@ -172,4 +189,52 @@ $(".hamburger-menu").click(function() {
 
 $(".close-menu").click(function() {
     $(".sidebar-mobile").css('left', '-400px');
+});
+
+$(document).ready(function () {
+    var cursor = $('#cursor');
+    var follower = $('#aura');
+
+
+    $(window).mousemove(function (e) {
+        cursor.css({
+            top: (e.clientY - cursor.height() / 2) + 1,
+            left: (e.clientX - cursor.width() / 2) + 1
+        });
+        follower.css({
+            top: e.clientY - follower.height() / 2,
+            left: e.clientX - follower.width() / 2
+        })
+    });
+
+    $(window).mouseleave(function () {
+        $(cursor).css('opacity', '0');
+        $(follower).css('opacity', '0');
+    });
+
+    $(window).mouseenter(function () {
+        $(cursor).css('opacity', '1');
+        $(follower).css('opacity', '1');
+    });
+
+    $(window).click(function () {
+        $(follower).addClass('auraAnimationClick')
+        setTimeout(function () {
+            $(follower).removeClass('auraAnimationClick')
+        }, 1000);
+    });
+
+    $('.option').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.option').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
 });

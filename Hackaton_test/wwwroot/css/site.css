@@ -15,11 +15,13 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: none;
 }
 
 a{
     text-decoration: none;
     color: black;
+    cursor: none;   
 }
 
 ul{
@@ -343,7 +345,6 @@ and (orientation: portrait) {
     padding: 0 1rem;
     text-align: center;
     margin: 0 auto;
-    cursor: pointer;
     background-color: transparent;
     color: white;
     font-weight: 800;
@@ -535,7 +536,6 @@ option {
     padding: 0 1rem;
     text-align: center;
     margin: 0 auto;
-    cursor: pointer;
     background-color: transparent;
     color: white;
     font-weight: 800;
@@ -557,4 +557,70 @@ option {
 
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
+}
+
+
+/* ----- Cursor ----- */
+
+#cursor, #aura {
+    position: absolute;
+    border-radius: 100%;
+    user-select: none;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+#cursor {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255,255,255, .5);
+}
+
+#aura {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255, .2);
+    background-color: rgba(255,255,255,.027);
+    animation-timing-function: ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+
+.auraAnimationClick {
+    animation: auraAnimClick .5s forwards;
+}
+
+.auraAnimationHoverLink {
+    animation: auraAnimHoverLink .5s forwards;
+}
+
+/* ----- Animations ----- */
+
+/* --- Cursor animations --- */
+@keyframes auraAnimClick {
+    0% {
+        transform: scale(1);
+        background-color: rgba(255,255,255,.027);
+    }
+
+    50% {
+        transform: scale(1.15);
+        background-color: rgba(255,255,255,.047);
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: rgba(255,255,255,.027);
+    }
+}
+
+@keyframes auraAnimHoverLink {
+    0% {
+        transform: scale(1);
+        background-color: rgba(255,255,255,.027);
+    }
+
+    100% {
+        transform: scale(1.1);
+        background-color: rgba(255,255,255,.037);
+    }
 }
