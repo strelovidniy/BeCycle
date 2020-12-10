@@ -48,6 +48,8 @@
         $('#cursor').hide();
         $('#aura').hide();
         $(".editing-desktop").css('display', 'none');
+
+        $('#poster-description').attr('cols', '35');
     }
 
 
