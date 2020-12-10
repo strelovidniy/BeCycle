@@ -17,12 +17,6 @@ namespace Hackaton_test.Controllers
         public IActionResult Index()
         {
             List<Poster> list;
-
-            using (var db = new ApplicationContext())
-            {
-                list = db.Posters.OrderByDescending(pos => pos.EventDate).ToList();
-            }
-
             var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
             var claimsDictionary = claimsData?
                 .ToDictionary(key => key.Type.Split('/',
@@ -33,7 +27,10 @@ namespace Hackaton_test.Controllers
                 .Aggregate("", (s, c) => s + c);
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
-
+            using (var db = new ApplicationContext())
+            {
+                list = db.Posters.OrderByDescending(pos => pos.EventDate).ToList();
+            }
             return View(list);
         }
 
@@ -73,16 +70,12 @@ namespace Hackaton_test.Controllers
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
 
-            List<Poster> posters;
-
             using (var dbContext = new ApplicationContext())
             {
-                posters = dbContext.Posters.Where(poster =>
-                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickName"] as string))
-                        .Posters.Contains(poster)).ToList();
+                User currentUser = dbContext.Users.FirstOrDefault(u => u.Email == (string) ViewData["UserEmail"]);
+                List<Poster> posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
+                return View("Subscriptions", posters);
             }
-
-            return View("Index", posters);
         }
 
         public IActionResult StartFollowing(int id)
@@ -98,42 +91,19 @@ namespace Hackaton_test.Controllers
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
 
-            User currentUser;
-            Poster currentPoster;
-
             using (var db = new ApplicationContext())
             {
-                currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
-                currentPoster = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
+                User currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
+                var eventFollower = new EventFollower()
+                {
+                    EventId = id,
+                    FollowerId = currentUser.UserId
+                };
+                currentUser.EventFollowers.Add(new EventFollower(){EventId = id, FollowerId = currentUser.UserId});
+                var posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
+                db.SaveChanges(true);
+                return View("Subscriptions", posters);
             }
-
-            var eventFollower = new EventFollower()
-            {
-                Event = currentPoster,
-                Follower = currentUser,
-                EventId = id,
-                FollowerId = currentUser.UserId
-            };
-
-            currentUser.EventFollowers.Add(eventFollower);
-            currentPoster.EventFollowers.Add(eventFollower);
-
-            List<Poster> posters = new List<Poster>() { new Poster() { PosterId = 100, Title = "lol", Description = "Dec" } };
-
-            // using (var dbContext = new ApplicationContext())
-            // {
-            //     posters = dbContext.Posters.Where(poster =>
-            //         dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
-            //             .Posters.Contains(poster)).ToList();
-            // }
-
-            return View("Index", posters);
-
-
-
-
-
-            return RedirectToAction("Following", "Home");
         }
     }
 
