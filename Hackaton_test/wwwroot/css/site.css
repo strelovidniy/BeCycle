@@ -204,8 +204,8 @@ and (orientation: portrait) {
 
     .hamburger-menu {
         position: absolute;
-        margin-left: 1rem;
-        margin-top: 1.9rem;
+        top: 20px;
+        left: 20px;
     }
 
     .hamburger-menu i {
@@ -549,6 +549,10 @@ option {
     background: transparent;
     backdrop-filter: blur(10px);
     border-radius: 35px;
+}
+
+.create-poster-button:focus {
+    outline: none;
 }
 
 ::-webkit-calendar-picker-indicator {
