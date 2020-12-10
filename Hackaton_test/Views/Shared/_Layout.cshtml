@@ -32,33 +32,37 @@
                 </div>
             </div>
         </div>
-        <div class="sidebar-bottom">
-            <div class="profile-picture">
+        
+        @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
+        {
+            <div class="sidebar-bottom">
+                <div class="profile-picture">
 
+                </div>
+                <div class="profile-information">
+                    <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
+                    <p class="view-profile">View profile</p>
+                </div>
+                <div class="profile-settings">
+                    <img class="icon settings" src="~/icons/settings.svg" />
+                </div>
             </div>
-            <div class="profile-information">
-                <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
-                <p class="view-profile">View profile</p>
-            </div>
-            <div class="profile-settings">
-                <img class="icon settings" src="~/icons/settings.svg" />
-            </div>
-        </div>
+        }
     </div>
 
     <div class="sidebar-mobile">
         <div class="sidebar-mobile-body">
             <div class="sidebar-mobile-body-content">
-                <div class="option active">
+                <div class="option home active">
                     <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="home">Home</a>
                 </div>
                 <div class="close-menu">
                     <img class="icon" src="icons/cross.svg" />
                 </div>
-                <div class="option">
+                <div class="option map">
                     <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
                 </div>
-                <div class="option">
+                <div class="option poster-create">
                     <img class="icon" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
                 </div>
                 <div class="option go-journey">
