@@ -74,14 +74,15 @@ namespace Hackaton_test.Controllers
                 .Aggregate("", (s, c) => s + c);
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
-
+            List<Poster> posters;
             using (var dbContext = new ApplicationContext())
             {
                 User currentUser = dbContext.Users.FirstOrDefault(u => u.Email == (string) ViewData["UserEmail"]);
-                List<Poster> posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
+                posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
                 dbContext.SaveChanges(true);
-                return View("Subscriptions", posters);
+               
             }
+            return View("Index", posters);
         }
 
         public IActionResult StartFollowing(int id)
@@ -96,20 +97,27 @@ namespace Hackaton_test.Controllers
                 .Aggregate("", (s, c) => s + c);
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
+            List<Poster> posters;
+            Poster list;
 
             using (var db = new ApplicationContext())
             {
                 User currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
+                list = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
+                
                 var eventFollower = new EventFollower()
                 {
                     EventId = id,
-                    FollowerId = currentUser.UserId
+                    FollowerId = currentUser.UserId,
+                    Follower = currentUser,
+                    Event =  list
                 };
-                currentUser.EventFollowers.Add(new EventFollower(){EventId = id, FollowerId = currentUser.UserId});
-                var posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
+                currentUser.EventFollowers.Add(eventFollower);
+                posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
                 db.SaveChanges(true);
-                return View("Subscriptions", posters);
+             
             }
+            return View("Index", posters);
         }
     }
 
