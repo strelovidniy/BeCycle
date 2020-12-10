@@ -42,19 +42,31 @@ $(".option.poster-create").click(function () {
     document.location.href = goJourney_url;
 });
 
-$(".profile-settings").click(function () {
+$(".profile-settings").click(function (event) {
+    event.preventDefault();
+
     $(".sidebar").css({ 'left': '0px' }).animate({
         'left': '-400px'
     });
 
     window.setTimeout(function() {
-        document.location.href = "editprofile";
+        document.location.href = $("#view-profile-link").attr("href");
     }, 1000);
 
 });
 
 $(".profile-settings").hover(function () {
     $(this).css('cursor', 'pointer');
+});
+
+$(".view-profile").click(function() {
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = "";
+    }, 1000);
 });
 
 
