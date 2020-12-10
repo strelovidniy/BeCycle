@@ -17,7 +17,7 @@ namespace Hackaton_test.Controllers
 
             using (var db = new ApplicationContext())
             {
-               list = db.Posters.OrderBy(pos=>pos.EventDate).ToList();
+               list = db.Posters.OrderByDescending(pos=>pos.EventDate).ToList();
             }
 
             ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
