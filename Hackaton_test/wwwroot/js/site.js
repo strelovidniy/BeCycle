@@ -46,7 +46,7 @@ $(".option.poster-create").click(function () {
     document.location.href = poster_url;
 });
 
-$(".option.poster-create").click(function () {
+$(".go-journey").click(function () {
     var goJourney_url = $("#GoJourney-link").attr("href");
     document.location.href = goJourney_url;
 });

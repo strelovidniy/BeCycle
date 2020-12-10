@@ -142,8 +142,14 @@ ul{
 .content-section {
     width: 100vw;
     height: calc(100vh - 2rem);
-    margin-top: 2rem;
-    margin-left: 20rem;
+    padding-top: 2rem;
+    padding-left: 20rem;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 main {
@@ -398,6 +404,7 @@ and (orientation: portrait) {
     width: 200px;
     height: 200px;
     border-radius: 100%;
+    object-fit: contain;
     background-image: url("/images/avatar-placeholder.jpg");
     background-size: cover;
     background-position: center;
@@ -425,4 +432,13 @@ and (orientation: portrait) {
         margin: 0;
         transform: translateY(4.2rem);
     }
+}
+
+
+/* --------------------------------------------- POSTER CREATION --------------------------------------------- */
+.poster-creation-wrapper {
+    width: 600px;
+    height: 500px;
+    background-color: red;
+    margin-right: 3.5rem;
 }
