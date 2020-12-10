@@ -65,7 +65,7 @@
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
-        $(".editing-desktop").css('display', 'block');
+        $(".editing-desktop").css('display', 'flex');
         $('#cursor').show();
         $('#aura').show();
         $(".editing-mobile").css('display', 'none');
@@ -168,9 +168,6 @@ $(".view-profile").click(function () {
 
 
 // Active tab
-$(".active").hover(function () {
-    $(this).css('background-color', "rgba(255, 255, 255, .3)");
-});
 
 $('.option').click(function (e) {
     $('.option').removeClass('active');
