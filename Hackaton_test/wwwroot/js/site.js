@@ -33,22 +33,49 @@ $(".option").hover(function () {
 // Redirecting
 $(".option.home").click(function () {
     var home_url = $("#home-link").attr("href");
-    document.location.href = home_url;
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = home_url;
+    }, 1000);
+    
 });
 
 $(".option.map").click(function () {
     var map_url = $("#map-link").attr("href");
-    document.location.href = map_url;
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = map_url;
+    }, 1000);
 });
 
 $(".option.poster-create").click(function () {
     var poster_url = $("#posterCreation-link").attr("href");
-    document.location.href = poster_url;
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = poster_url;
+    }, 1000);
 });
 
 $(".go-journey").click(function () {
+    event.preventDefault();
     var goJourney_url = $("#GoJourney-link").attr("href");
-    document.location.href = goJourney_url;
+
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = goJourney_url;
+    }, 1000);
 });
 
 $(".profile-settings").click(function (event) {
