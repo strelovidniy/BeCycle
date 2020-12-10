@@ -16,7 +16,11 @@
             <p class="poster-description">@poster.Description</p>
             <p class="poster-eventdate">@poster.EventDate</p>
             <p>@poster.Author</p>
-            <button class="subscribe-button" action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">Subscribe</button>
+            <form action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">
+                <input type="hidden" name="Id" value="@poster.PosterId">
+                <button class="subscribe-button" type="submit">Subscribe</button>
+            </form>
+          
         </div>
     }
 </main>

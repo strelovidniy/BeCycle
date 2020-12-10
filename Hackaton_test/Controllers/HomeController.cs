@@ -82,7 +82,7 @@ namespace Hackaton_test.Controllers
             currentUser.EventFollowers.Add(eventFollower);
             currentPoster.EventFollowers.Add(eventFollower);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Following", "Home");
         }
     }
     
