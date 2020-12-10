@@ -21,6 +21,7 @@ namespace Hackaton_test.Controllers
             List<Poster> list;
             using (var db = new ApplicationContext())
             {
+                //db.Posters.Add
                list = db.Posters.Where(poster => poster.SportType == sportType).ToList();
             }
             ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
