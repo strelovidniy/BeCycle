@@ -1,4 +1,33 @@
 ﻿$(document).ready(function () {
+    // Current tab
+    if (window.location.href.includes('/home')) {
+        $('.home').addClass('active');
+        $('.map').removeClass('active');
+        $('.poster-create').removeClass('active');
+        $('.go-journey').removeClass('active');
+    }
+
+    if (window.location.href.includes('/map')) {
+        $('.map').addClass('active');
+        $('.home').removeClass('active');
+        $('.poster-create').removeClass('active');
+        $('.go-journey').removeClass('active');
+    }
+
+    if (window.location.href.includes('/postercreation')) {
+        $('.poster-create').addClass('active');
+        $('.map').removeClass('active');
+        $('.home').removeClass('active');
+        $('.go-journey').removeClass('active');
+    }
+
+    if (window.location.href.includes('/gojourney')) {
+        $('.go-journey').addClass('active');
+        $('.map').removeClass('active');
+        $('.poster-create').removeClass('active');
+        $('.home').removeClass('active');
+    }
+
 
     if (window.location.href.includes('/editprofile')) {
         $(".sidebar-bottom").hide();
