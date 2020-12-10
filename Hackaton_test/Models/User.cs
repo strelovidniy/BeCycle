@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
 {
-
     public class User 
     {
         public int UserId { get; set; }
@@ -17,7 +15,6 @@ namespace Hackaton_test.Models
         public int Distance { get; set; }
         public string ImageURL { get; set; }
         public List<Poster> Posters { get; set; }
-
         public List<EventFollower> EventFollowers { get; set; }
         public List<UserAchievement> UserAchievements { get; set; }
         public List<UserFriend> UserFriends { get; set; }
@@ -28,29 +25,5 @@ namespace Hackaton_test.Models
             UserAchievements = new List<UserAchievement>();
             UserFriends = new List<UserFriend>();
         }
-    }
-
-    public class UserAchievement
-    {
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public int AchievementId { get; set; }
-        public Achievement Achievement { get; set; }
-    }
-
-    public class EventFollower
-    {
-        public int FollowerId { get; set; }
-        public User Follower { get; set; }
-        public int EventId { get; set; }
-        public Poster Event { get; set; }
-    }
-
-    public class UserFriend
-    {
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public int FriendId { get; set; }
-        public User Friend { get; set; }
     }
 }

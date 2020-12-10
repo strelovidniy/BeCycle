@@ -13,7 +13,6 @@ namespace Hackaton_test.Models
         public SportType SportType { get; set; }
         public User Author { get; set; }
         public int AuthorId { get; set; }
-
         public List<EventFollower> EventFollowers { get; set; }
 
         public Poster() => EventFollowers = new List<EventFollower>();
