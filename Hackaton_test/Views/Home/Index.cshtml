@@ -16,7 +16,7 @@
             <p class="poster-description">@poster.Description</p>
             <p class="poster-eventdate">@poster.EventDate</p>
             <p>@poster.Author</p>
-            <button class="subscribe-button">Subscribe</button>
+            <button class="subscribe-button" action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">Subscribe</button>
         </div>
     }
 </main>
