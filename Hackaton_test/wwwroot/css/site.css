@@ -267,6 +267,10 @@ main {
     color: white;
 }
 
+.subscribe-button:focus {
+    outline: none;
+}
+
 .settings {
     transition: .7s ease;
 }
