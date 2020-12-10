@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    if (window.location.href.includes($("#view-profile-link").attr("href"))) {
+    if (window.location.href.includes('/editprofile')) {
         $(".sidebar-bottom").hide();
         $(".sidebar-mobile-bottom").hide();
     } else {
@@ -59,7 +59,7 @@ $(".profile-settings").click(function (event) {
     });
 
     window.setTimeout(function() {
-        document.location.href = $("#view-profile-link").attr("href");
+        document.location.href = "/editprofile";
     }, 1000);
 
 });
@@ -68,13 +68,14 @@ $(".profile-settings").hover(function () {
     $(this).css('cursor', 'pointer');
 });
 
-$(".view-profile").click(function() {
+$(".view-profile").click(function () {
+    event.preventDefault();
     $(".sidebar").css({ 'left': '0px' }).animate({
         'left': '-400px'
     });
 
     window.setTimeout(function () {
-        document.location.href = "";
+        document.location.href = $("#view-profile-link").attr("href");
     }, 1000);
 });
 
