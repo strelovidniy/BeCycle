@@ -433,6 +433,10 @@ and (orientation: portrait) {
         flex-direction: column;
     }
 
+    .editing {
+        height: calc(100vh - 3rem);
+    }
+
     .profile-avatar {
         width: 150px;
         height: 150px;
