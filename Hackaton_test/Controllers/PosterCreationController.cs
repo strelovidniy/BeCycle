@@ -37,7 +37,7 @@ namespace Hackaton_test.Controllers
                 currentUser = db.Users.First(us => us.UserId == (int)ViewData["UserId"] );
             }
             
-            Poster newPoster = new Poster()
+            var newPoster = new Poster()
             {
                 Title = poster.Title,
                 Description =  poster.Description,
@@ -51,6 +51,7 @@ namespace Hackaton_test.Controllers
             {
                enPoster = db.Posters.Add(newPoster);
             }
+
             return RedirectToAction("Index", "Poster", new {enPoster.Entity.PosterId});
         }
     }

@@ -24,8 +24,8 @@ namespace Hackaton_test.Controllers
         [HttpPost]
         public IActionResult Index(User user)
         {
-            string userInfo = $"UserNickname: {user.NickName}, UserPhone: {user.PhoneNumber}";
-            return Content(userInfo);
+            //TODO: Update User user in database
+            return Redirect("~/Profile");
         }
     }
 }
