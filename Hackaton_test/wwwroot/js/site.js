@@ -2,6 +2,12 @@
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
     }
+
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        $(".mobile-heading-edit").text("Edit profile");
+    }
+
+
     $(".sidebar").css({ 'left': '-400px' }).animate({
         'left': '-0px'
     });
@@ -50,6 +56,7 @@ $(".profile-settings").click(function () {
 $(".profile-settings").hover(function () {
     $(this).css('cursor', 'pointer');
 });
+
 
 // Active tab
 $(".active").hover(function () {

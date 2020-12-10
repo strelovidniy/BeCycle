@@ -7,7 +7,8 @@
 }
 
 body {
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     background-image: url("/images/background-main-page.svg");
@@ -124,12 +125,21 @@ ul{
 
 .name-surname{
     font-size: 1rem;
+    color: white;
 }
 
 .view-profile{
     font-size: .8rem;
+    color: white;
 }
 
+
+.content-section {
+    width: 100vw;
+    height: calc(100vh - 2rem);
+    margin-top: 2rem;
+    margin-left: 20rem;
+}
 
 main {
     width: 100vw;
@@ -165,7 +175,7 @@ and (max-device-width: 1920px) {
 }
 
 
- /* ---------------------------------- Mobile ---------------------------------- */
+ /* ---------------------------------- MOBILE MAIN PAGE ---------------------------------- */
 @media only screen
 and (min-device-width: 375px)
 and (max-device-width: 667px)
@@ -332,6 +342,10 @@ and (orientation: portrait) {
     transform: translateX(1.2rem);
 }
 
+.editing-button:focus {
+    outline: none;
+}
+
 .editing-button:hover {
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     background: transparent;
@@ -357,6 +371,10 @@ and (orientation: portrait) {
     border-radius: 30px;
 }
 
+.input-option label {
+    margin-left: .7rem;
+}
+
 .input-option input:focus {
     outline: none;
 }
@@ -378,4 +396,24 @@ and (orientation: portrait) {
 .input-option.readonly input {
     background-color: rgba(0, 0, 0, .5);
     color: white;
+}
+
+
+
+/* --------------------------------------------- MOBILE EDIT PAGE --------------------------------------------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    #editing-form {
+        width: 200px;
+        flex-direction: column;
+    }
+
+    .editing-heading {
+        margin: 0;
+        display: none;
+    }
+
+    .editing-button {
+        margin: 0;
+        transform: translateY(4.2rem);
+    }
 }
