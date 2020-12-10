@@ -32,6 +32,11 @@
                 </div>
             </div>
         </div>
+        
+        
+        
+        
+
         @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
         {
             <div class="sidebar-bottom">
@@ -52,8 +57,8 @@
 
         
 
-        <div class="sidebar-mobile">
-                <div class="sidebar-mobile-body">
+    <div class="sidebar-mobile">
+        <div class="sidebar-mobile-body">
                     <div class="sidebar-mobile-body-content">
                         <div class="option home active">
                             <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="/home">Home</a>
@@ -69,6 +74,9 @@
                         </div>
                         <div class="option go-journey">
                             <img class="icon" src="~/icons/gojourney.svg" /><a href="/gojourney" id="GoJourney-link" href="GoJourney">Go Journey</a>
+                        </div>
+                        <div class="option search">
+                            <input type="text" />
                         </div>
                     </div>
                 </div>
@@ -92,9 +100,10 @@
             </div>
 
 
-            @RenderBody()
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @await RenderSectionAsync("Scripts", required: false)
+    @RenderBody()
+     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=6&cityID=4436&type=4&scode=124&ltid=3457&domid=w209&anc_id=48043&cmetric=1&wlangID=1&color=137AE9&wwidth=249&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

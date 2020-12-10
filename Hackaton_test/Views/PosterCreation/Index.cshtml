@@ -4,9 +4,31 @@
     ViewData["Title"] = "Create new poster";
 }
 
-
 <section class="content-section">
     <div class="poster-creation-wrapper">
-
+        <h1 class="create-poster-heading">Create new poster</h1>
+        <form class="create-poster-form">
+            <div class="poster-item poster-title">
+                <label for="poster-title">Poster title</label>
+                <input type="text" id="poster-title" name="poster-title" placeholdrer="Poster title" required />
+            </div>
+            <div class="poster-item poster-description">
+                <label for="poster-description">Poster description</label>
+                <textarea style="resize: none; overflow: hidden;" id="poster-description" name="poster-description" placeholdrer="Poster description" required rows="4" cols="50"></textarea>
+            </div>
+            <div class="poster-item poster-date">
+                <label for="poster-date">Event date</label>
+                <input type="date" id="poster-date" name="poster-date" required />
+            </div>
+            <div class="poster-item poster-type">
+                <label for="poster-type">Event type</label>
+                <select name="poster-type" id="poster-type">
+                    <option value="extreme">Extreme</option>
+                    <option value="race">Race</option>
+                    <option value="forest-ride">Forest ride</option>
+                </select>
+            </div>
+            <button class="create-poster-button">Create</button>
+        </form>
     </div>
 </section>
