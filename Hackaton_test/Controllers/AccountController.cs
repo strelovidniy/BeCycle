@@ -26,8 +26,8 @@ namespace Hackaton_test.Controllers
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var claims = result.Principal?.Identities.FirstOrDefault().Claims
-                .Select(claims => new { claims.Type, claims.Value });
+            var claims = result.Principal?.Identities.FirstOrDefault()?.Claims.
+                Select(claims => new { claims.Type, claims.Value });
 
             var googleAuthData = claims.ToDictionary(
                 key =>
