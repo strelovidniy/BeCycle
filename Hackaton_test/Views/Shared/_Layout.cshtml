@@ -32,13 +32,13 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
         {
             <div class="sidebar-bottom">
                 <div class="profile-picture">
-                        
+
                 </div>
                 <div class="profile-information">
                     <h4 id="view-profile-link" href="/profile/index?id=@ViewData["UserId"]" class="name-surname view-profile">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
@@ -49,51 +49,50 @@
                 </div>
             </div>
         }
-    </div>
 
     <div class="sidebar-mobile">
-        <div class="sidebar-mobile-body">
-            <div class="sidebar-mobile-body-content">
-                <div class="option home active">
-                    <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="/home">Home</a>
-                </div>
-                <div class="close-menu">
-                    <img class="icon" src="icons/cross.svg" />
-                </div>
-                <div class="option map">
-                    <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="/map">Map</a>
-                </div>
-                <div class="option poster-create">
-                    <img class="icon" src="~/icons/poster.svg" /><a href="/postercreation">Create new poster</a>
-                </div>
-                <div class="option go-journey">
-                    <img class="icon" src="~/icons/gojourney.svg" /><a href="/gojourney" id="GoJourney-link" href="GoJourney">Go Journey</a>
-                </div>
-            </div>
-        </div>
-        @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
-        {
-            <div class="sidebar-mobile-bottom">
-                <div class="user">
-                    <div class="profile-picture">
-
-                    </div>
-                    <div class="profile-information">
-                        <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
-                        <a id="view-profile-link" href="/profile/index?id=@ViewData["UserId"]" class="view-profile">View profile</a>
+                <div class="sidebar-mobile-body">
+                    <div class="sidebar-mobile-body-content">
+                        <div class="option home active">
+                            <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="/home">Home</a>
+                        </div>
+                        <div class="close-menu">
+                            <img class="icon" src="icons/cross.svg" />
+                        </div>
+                        <div class="option map">
+                            <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="/map">Map</a>
+                        </div>
+                        <div class="option poster-create">
+                            <img class="icon" src="~/icons/poster.svg" /><a href="/postercreation">Create new poster</a>
+                        </div>
+                        <div class="option go-journey">
+                            <img class="icon" src="~/icons/gojourney.svg" /><a href="/gojourney" id="GoJourney-link" href="GoJourney">Go Journey</a>
+                        </div>
                     </div>
                 </div>
-                <div class="profile-settings">
-                    <img class="icon settings" src="~/icons/settings.svg"/>
-                </div>
+                @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
+                {
+                    <div class="sidebar-mobile-bottom">
+                        <div class="user">
+                            <div class="profile-picture">
+
+                            </div>
+                            <div class="profile-information">
+                                <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
+                                <a id="view-profile-link" href="/profile/index?id=@ViewData["UserId"]" class="view-profile">View profile</a>
+                            </div>
+                        </div>
+                        <div class="profile-settings">
+                            <img class="icon settings" src="~/icons/settings.svg" />
+                        </div>
+                    </div>
+                }
             </div>
-        }
-    </div>
 
 
-    @RenderBody()
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+            @RenderBody()
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
