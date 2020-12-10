@@ -425,6 +425,10 @@ and (orientation: portrait) {
     display: none;
 }
 
+.weather {
+    display: none;
+}
+
 /* --------------------------------------------- MOBILE EDIT PAGE --------------------------------------------- */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     #editing-form {
