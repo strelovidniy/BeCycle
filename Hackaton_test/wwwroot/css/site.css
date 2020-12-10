@@ -29,6 +29,10 @@ ul{
     list-style: none;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 .sidebar {
     position: absolute;
     height: 95vh;
@@ -187,9 +191,10 @@ main {
     gap: 1rem;
     width: 100vw;
     height: calc(100vh - 2rem);
-    margin-top: 2rem;
-    margin-left: 20rem;
-    position: relative;
+    padding-top: 2rem;
+    padding-left: 20rem;
+
+    overflow-y: auto;
 }
 
 
