@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-    $(".sidebar").css('display', 'flex');
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+        $(".sidebar").css('display', 'flex');
+    }
     $(".sidebar").css({ 'left': '-400px' }).animate({
         'left': '-0px'
     });
