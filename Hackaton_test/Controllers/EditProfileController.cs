@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Hackaton_test.Models;
@@ -24,8 +25,23 @@ namespace Hackaton_test.Controllers
         [HttpPost]
         public IActionResult Index(User user)
         {
-            //TODO: Update User user in database
-            return Redirect("~/Profile");
+            using (var dbContext = new ApplicationContext())
+            {
+                var entity = dbContext.Users.FirstOrDefault(user1 => user1.NickName == user.NickName);
+
+                if (entity != null)
+                {
+                    entity.PhoneNumber = user.PhoneNumber;
+                    
+                    dbContext.SaveChanges();
+
+                    entity.NickName = user.NickName;
+                    
+                    dbContext.SaveChanges();
+                }
+            }
+
+            return Redirect($"~/profile/index?username={user.NickName}");
         }
     }
 }

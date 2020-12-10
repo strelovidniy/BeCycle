@@ -5,6 +5,7 @@
         $('.map').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/map')) {
@@ -12,6 +13,7 @@
         $('.home').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/postercreation')) {
@@ -19,6 +21,7 @@
         $('.map').removeClass('active');
         $('.home').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/gojourney')) {
@@ -26,7 +29,17 @@
         $('.map').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.home').removeClass('active');
+        $('.achivements').removeClass('active');
     }
+    
+    if (window.location.href.includes('/profile/achievements')) {
+        $('.achivements').addClass('active');
+        $('.map').removeClass('active');
+        $('.poster-create').removeClass('active');
+        $('.home').removeClass('active');
+        $('.go-journey').removeClass('active');
+    }
+
 
 
     if (window.location.href.includes('/editprofile')) {
@@ -36,7 +49,6 @@
         $(".sidebar-bottom").show();
         $(".sidebar-mobile-bottom").show();
     }
-
     if(window.location.href.includes('/gojourney'))
     {
         var css_file = document.createElement("link");
@@ -65,7 +77,7 @@
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
-        $(".editing-desktop").css('display', 'block');
+        $(".editing-desktop").css('display', 'flex');
         $('#cursor').show();
         $('#aura').show();
         $(".editing-mobile").css('display', 'none');
@@ -116,6 +128,28 @@ $(".option.map").click(function () {
     }, 1000);
 });
 
+$(".achivements").click(function () {
+    var achivements_url = $("#achivements-link").attr("href");
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = achivements_url;
+    }, 1000);
+});
+
+$(".subscriptions").click(function () {
+    var subscriptions_url = $("#subscriptions-link").attr("href");
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = subscriptions_url;
+    }, 1000);
+});
+
 $(".option.poster-create").click(function () {
     var poster_url = $("#posterCreation-link").attr("href");
     $(".sidebar").css({ 'left': '0px' }).animate({
@@ -126,6 +160,13 @@ $(".option.poster-create").click(function () {
         document.location.href = poster_url;
     }, 1000);
 });
+
+
+$(".login-button").click(function () {
+
+    document.location.href = '/account/google-signin';
+});
+
 
 $(".go-journey").click(function () {
     event.preventDefault();
@@ -168,9 +209,6 @@ $(".view-profile").click(function () {
 
 
 // Active tab
-$(".active").hover(function () {
-    $(this).css('background-color', "rgba(255, 255, 255, .3)");
-});
 
 $('.option').click(function (e) {
     $('.option').removeClass('active');
@@ -285,6 +323,20 @@ $(document).ready(function () {
     });
 
     $('.poster-description').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('.login-button').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.login-button').mouseleave(function () {
         $(follower).css({
             transform: "scale(1)",
             'background-color': "rgba(255,255,255,.027)"
