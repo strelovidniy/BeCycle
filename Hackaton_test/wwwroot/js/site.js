@@ -72,7 +72,7 @@
             }
         }
 
-        $(".weather").appendTo($(".sidebar"));
+        $(".weather").insertAfter($(".sidebar-body"));
         $(".weather").css('display', 'block');
     }
 
