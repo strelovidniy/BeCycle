@@ -11,7 +11,7 @@ namespace Hackaton_test.Controllers
     public class HomeController : Controller
     {
         [AllowAnonymous]
-        public IActionResult Index() 
+        public IActionResult Index()
         {
             List<Poster> list;
 
@@ -43,6 +43,23 @@ namespace Hackaton_test.Controllers
             return View("Index", list);
         }
         
+        public IActionResult Following()
+        {
+            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
+            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+
+            List<Poster> posters;
+
+            using (var dbContext = new ApplicationContext())
+            {
+                posters = dbContext.Posters.Where(poster =>
+                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
+                        .Posters.Contains(poster)).ToList();
+            }
+
+            return View("Index", posters);
+        }
         
         public IActionResult StartFollowing(int id)
         {
