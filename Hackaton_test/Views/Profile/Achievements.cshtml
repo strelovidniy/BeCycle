@@ -3,7 +3,7 @@
 }
 
 <div class="achivements-section">
-    @foreach (var achievement in (List<UserAchievement>)ViewData["UserAchievements"])
+    @foreach (var achievement in (List<UserAchievement>) ViewData["UserAchievements"])
     {
         <div class="achivement">
             <h1 class="achivement-title">@achievement.Achievement.Name</h1>
