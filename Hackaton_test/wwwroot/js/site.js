@@ -161,6 +161,13 @@ $(".option.poster-create").click(function () {
     }, 1000);
 });
 
+
+$(".login-button").click(function () {
+
+    document.location.href = '/account/google-signin';
+});
+
+
 $(".go-journey").click(function () {
     event.preventDefault();
     var goJourney_url = $("#GoJourney-link").attr("href");
@@ -316,6 +323,20 @@ $(document).ready(function () {
     });
 
     $('.poster-description').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('.login-button').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.login-button').mouseleave(function () {
         $(follower).css({
             transform: "scale(1)",
             'background-color': "rgba(255,255,255,.027)"
