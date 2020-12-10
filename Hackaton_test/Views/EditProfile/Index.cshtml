@@ -13,10 +13,11 @@
             <h2 class="mobile-heading-edit">Information</h2>
             <div class="editing-desktop">
                 <form id="editing-form" method="post">
+                    <div class="information">
                     <div class="first-information">
                         <div class="input-option readonly">
                             <label for="name-input">Name</label>
-                            <input id="name-input" type="text" name="FirstName" placeholder="Name" value="@ViewData["UserName"]" readonly="readonly" required />
+                            <input id="name-input" type="text" placeholder="Name" value="@ViewData["UserName"]" readonly="readonly" required />
                         </div>
 
                         <div class="input-option">
@@ -29,18 +30,16 @@
                             <input id="phone-input" type="tel" name="PhoneNumber" placeholder="Phone" value="@ViewData["UserPhone"]" required autocomplete="off"/>
                         </div>
                     </div>
-                    @* useless comment *@
                     <div class="second-information">
-
-                        <div class="input-option readonly">
-                            <label for="surname-input">Surname</label>
-                            <input id="surname-input" type="text" name="LastName" placeholder="Surname" value="@ViewData["UserSurname"]" readonly="readonly" required />
-                        </div>
-
+                    <div class="input-option readonly">
+                        <label for="surname-input">Surname</label>
+                        <input id="surname-input" type="text" placeholder="Surname" value="@ViewData["UserSurname"]" readonly="readonly" required />
+                    </div>
                         <div class="input-option readonly">
                             <label for="email-input">Email</label>
-                            <input id="email-input" type="text" name="Email" placeholder="Email" value="@ViewData["UserEmail"]" readonly="readonly" />
+                            <input id="email-input" type="text" placeholder="Email" value="@ViewData["UserEmail"]" readonly="readonly" />
                         </div>
+                    </div>
                     </div>
                     <button class="editing-button" type="submit">Save</button>
                 </form>

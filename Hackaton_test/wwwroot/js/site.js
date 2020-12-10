@@ -5,6 +5,7 @@
         $('.map').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/map')) {
@@ -12,6 +13,7 @@
         $('.home').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/postercreation')) {
@@ -19,6 +21,7 @@
         $('.map').removeClass('active');
         $('.home').removeClass('active');
         $('.go-journey').removeClass('active');
+        $('.achivements').removeClass('active');
     }
 
     if (window.location.href.includes('/gojourney')) {
@@ -26,7 +29,17 @@
         $('.map').removeClass('active');
         $('.poster-create').removeClass('active');
         $('.home').removeClass('active');
+        $('.achivements').removeClass('active');
     }
+    
+    if (window.location.href.includes('/profile/achievements')) {
+        $('.achivements').addClass('active');
+        $('.map').removeClass('active');
+        $('.poster-create').removeClass('active');
+        $('.home').removeClass('active');
+        $('.go-journey').removeClass('active');
+    }
+
 
 
     if (window.location.href.includes('/editprofile')) {
@@ -36,7 +49,6 @@
         $(".sidebar-bottom").show();
         $(".sidebar-mobile-bottom").show();
     }
-
     if(window.location.href.includes('/gojourney'))
     {
         var css_file = document.createElement("link");
@@ -113,6 +125,28 @@ $(".option.map").click(function () {
 
     window.setTimeout(function () {
         document.location.href = map_url;
+    }, 1000);
+});
+
+$(".achivements").click(function () {
+    var achivements_url = $("#achivements-link").attr("href");
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = achivements_url;
+    }, 1000);
+});
+
+$(".subscriptions").click(function () {
+    var subscriptions_url = $("#subscriptions-link").attr("href");
+    $(".sidebar").css({ 'left': '0px' }).animate({
+        'left': '-400px'
+    });
+
+    window.setTimeout(function () {
+        document.location.href = subscriptions_url;
     }, 1000);
 });
 
