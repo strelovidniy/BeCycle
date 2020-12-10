@@ -31,11 +31,5 @@ namespace Hackaton_test.Controllers
 
             return View();
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Update([FromForm] User user)
-        //{
-        //    return null;
-        //}
     }
 }
