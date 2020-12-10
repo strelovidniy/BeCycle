@@ -10,10 +10,14 @@
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
+        $(".editing-desktop").css('display', 'block');
+        $(".editing-mobile").css('display', 'none');
     }
 
     if (window.matchMedia("(max-width: 767px)").matches) {
-        $(".mobile-heading-edit").text("Edit profile");
+        $(".mobile-heading-edit").css('display', 'none');
+        $(".editing-mobile").css('display', 'block');
+        $(".editing-desktop").css('display', 'none');
     }
 
 

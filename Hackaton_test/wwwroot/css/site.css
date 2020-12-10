@@ -417,7 +417,13 @@ and (orientation: portrait) {
     color: white;
 }
 
+.editing-desktop {
+    display: none;
+}
 
+.editing-mobile {
+    display: none;
+}
 
 /* --------------------------------------------- MOBILE EDIT PAGE --------------------------------------------- */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
@@ -426,7 +432,11 @@ and (orientation: portrait) {
         flex-direction: column;
     }
 
-    
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        transform: translateY(-3rem);
+    }
 
     .editing-button {
         margin: 0;
