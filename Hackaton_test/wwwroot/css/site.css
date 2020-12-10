@@ -226,12 +226,16 @@ main {
     border: none;
     background-color: transparent;
     color: white;
+    text-align: center;
     text-transform: uppercase;
-    padding: .7rem;
     border: 1px solid white;
     border-radius: 35px;
     width: 100px;
     transition: all .4s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .view-poster:hover {

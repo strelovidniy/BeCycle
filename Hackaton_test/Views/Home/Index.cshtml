@@ -21,6 +21,7 @@
                 <p>@poster.Author</p>
             </div>
             <div class="poster-buttons">
+                <div class="view-poster">View</div>
                 <form action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">
                     <input type="hidden" name="Id" value="@poster.PosterId">
                     <button class="subscribe-button" type="submit">Subscribe</button>
