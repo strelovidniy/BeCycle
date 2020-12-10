@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
+using System.Security.Claims;
 using Hackaton_test.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace Hackaton_test.Controllers
 {
@@ -13,6 +16,8 @@ namespace Hackaton_test.Controllers
         {
             
             ViewBag.Locations = geoService.GetGeolocations();
+
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
 
             var claimsDictionary = claimsData?
                 .ToDictionary(key => key.Type.Split('/',
