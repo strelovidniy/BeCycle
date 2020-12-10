@@ -1,11 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
 {
-
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
@@ -33,7 +31,6 @@ namespace Hackaton_test.Models
             builder.InitialCatalog = "HackatonDB";
             optionsBuilder.UseSqlServer(builder.ConnectionString);
         }
-           
     }
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -41,6 +38,7 @@ namespace Hackaton_test.Models
         public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
             modelBuilder.ToTable("User").HasAlternateKey(u => u.NickName);
+            modelBuilder.HasAlternateKey(u => u.Email);
             modelBuilder.Property(n => n.NickName).IsRequired().HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.City).HasColumnType("nvarchar(50)");
             modelBuilder.Property(u => u.FirstName).IsRequired().HasColumnType("nvarchar(50)");

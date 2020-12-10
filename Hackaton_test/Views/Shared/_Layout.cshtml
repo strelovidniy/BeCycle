@@ -19,13 +19,16 @@
         <div class="sidebar-body">
             <div class="sidebar-body-content">
                 <div class="option home active">
-                    <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="#">Home</a>
+                    <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="Home">Home</a>
                 </div>
                 <div class="option map">
                     <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
                 </div>
                 <div class="option poster-create">
-                    <img class="icon" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
+                    <img class="icon" src="~/icons/poster.svg" /><a id="posterCreation-link" href="PosterCreation">Create new poster</a>
+                </div>
+                <div class="option go-journey">
+                    <img class="icon" src="~/icons/poster.svg" /><a id="GoJourney-link" href="GoJourney">Go Journey</a>
                 </div>
             </div>
         </div>
@@ -34,7 +37,7 @@
 
             </div>
             <div class="profile-information">
-                <h4 class="name-surname">Name Surname</h4>
+                <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
                 <p class="view-profile">View profile</p>
             </div>
             <div class="profile-settings">
@@ -66,7 +69,7 @@
 
                 </div>
                 <div class="profile-information">
-                    <h4 class="name-surname">Name Surname</h4>
+                    <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
                     <p class="view-profile">View profile</p>
                 </div>
             </div>

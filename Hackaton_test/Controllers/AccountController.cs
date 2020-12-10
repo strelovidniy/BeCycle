@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,39 +25,52 @@ namespace Hackaton_test.Controllers
         public async Task<IActionResult> GoogleResponse()
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             var claims = result.Principal?.Identities.FirstOrDefault().Claims
                 .Select(claims => new { claims.Type, claims.Value });
-            var dictionary = claims.ToDictionary(key =>
-            {
-                var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
-                return splitStrings[^1];
-            }, value => value.Value);
+
+            var googleAuthData = claims.ToDictionary(
+                key =>
+                {
+                    var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                    return splitStrings[^1];
+                },
+                value => value.Value);
+
             await using (var dbContext = new ApplicationContext())
             {
-                var dbUser = await dbContext.Users.FindAsync(dictionary["emailaddress"]);
-                    //.Where(user => user.Email == dictionary["emailaddress"]);
-               
+                var dbUsers = dbContext.Users.Where(user => user.Email == googleAuthData["emailaddress"]);
+                    
+                    var dbUser = dbUsers.FirstOrDefault();
+
                 if (dbUser == null)
                 {
-                    var nickName = dictionary["emailaddress"].TakeWhile(ch => ch != '@')
+                    var nickName = googleAuthData["emailaddress"].TakeWhile(ch => ch != '@')
                         .Aggregate("", (s, c) => s + c);
+
                     var registeredUser = await dbContext.Users.AddAsync(new User()
                     {
-                        Email = dictionary["emailaddress"], FirstName = dictionary["givenname"],
-                        LastName = dictionary["surname"], NickName = nickName
+                        Email = googleAuthData["emailaddress"], FirstName = googleAuthData["givenname"],
+                        LastName = googleAuthData["surname"], NickName = nickName
                     });
 
                     HttpContext.Session.SetInt32("UserId", registeredUser.Entity.UserId);
+                    HttpContext.Session.SetString("UserName", registeredUser.Entity.FirstName);
+                    HttpContext.Session.SetString("UserSurname", registeredUser.Entity.LastName);
+                    HttpContext.Session.SetString("UserNickname", registeredUser.Entity.NickName);
+                    HttpContext.Session.SetString("UserPhone", registeredUser.Entity.PhoneNumber);
+                    HttpContext.Session.SetString("UserEmail", registeredUser.Entity.Email);
+
                     await dbContext.SaveChangesAsync(true);
                 }
                 else
                 {
                     HttpContext.Session.SetInt32("UserId", dbUser.UserId);
+                    HttpContext.Session.SetString("UserName", dbUser.FirstName);
+                    HttpContext.Session.SetString("UserSurname", dbUser.LastName);
                 }
             }
-
-            ViewData["UserId"] = HttpContext.Session.Get("UserId");
-            return Redirect("~/Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

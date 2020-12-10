@@ -1,5 +1,4 @@
-﻿using System;
-using Hackaton_test.Services;
+﻿using Hackaton_test.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +11,7 @@ namespace Hackaton_test.Controllers
         public IActionResult Index()
         {
             ViewBag.Locations = geoService.GetGeolocations();
+
             return View();
         }
     }

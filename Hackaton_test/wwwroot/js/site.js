@@ -32,13 +32,8 @@ $(".option.poster-create").click(function () {
 });
 
 $(".option.poster-create").click(function () {
-    var goJourney_url = $("#GoJourney").attr("href");
+    var goJourney_url = $("#GoJourney-link").attr("href");
     document.location.href = goJourney_url;
-});
-
-$(".option.search").click(function () {
-    var search_url = $("#search-link").attr("href");
-    document.location.href = search_url;
 });
 
 $(".profile-settings").click(function () {

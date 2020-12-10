@@ -1,10 +1,8 @@
-﻿@using Microsoft.AspNetCore.Http
-@model List<Poster>
+﻿@model List<Poster>
 
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="hamburger-menu">
     <i class="fas fa-bars"></i>
 </div>
@@ -19,26 +17,23 @@
                 <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="Map">Map</a>
             </div>
             <div class="option poster-create">
-                <img class="icon" src="~/icons/poster.svg" /><a href="PosterCreation">Create new poster</a>
+                <img class="icon" src="~/icons/poster.svg" /><a id="posterCreation-link" href="PosterCreation">Create new poster</a>
             </div>
             <div class="option go-journey">
-                <img class="icon" src="~/icons/poster.svg" /><a href="GoJourney">Go Journey</a>
-            </div>
-            <div class="option search">
-                <img class="icon" src="~/icons/poster.svg" /><a href="Search">Search</a>
+                <img class="icon" src="~/icons/poster.svg" /><a id="GoJourney-link" href="GoJourney">Go Journey</a>
             </div>
         </div>
     </div>
     <div class="sidebar-bottom">
         <div class="profile-picture">
-                
+
         </div>
         <div class="profile-information">
-            <h4 class="name-surname">@ViewData["UserId"]</h4>
+            <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
             <p class="view-profile">View profile</p>
         </div>
         <div class="profile-settings">
-            <img class="icon settings" src="~/icons/settings.svg"/>
+            <img class="icon settings" src="~/icons/settings.svg" />
         </div>
     </div>
 </div>
@@ -66,7 +61,7 @@
 
             </div>
             <div class="profile-information">
-                <h4 class="name-surname">Name Surname</h4>
+                <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
                 <p class="view-profile">View profile</p>
             </div>
         </div>
@@ -80,5 +75,18 @@
     <div class="poster">
         <h1>title</h1>
         <p>description</p>
+        @if (Model.Count == 0)
+        {
+            <p>Nothing founded</p>
+        }
+        else
+        {
+            <ul>
+                @foreach (var poster in Model)
+                {
+                    <li><a href="@Url.Action("Index", "Poster", new {Id= poster.PosterId})">@poster.Title</a></li> //Url.Action повертає посилання на постер, можна в кнопку запхати посилання 
+                }
+            </ul>
+        }
     </div>
 </main>
