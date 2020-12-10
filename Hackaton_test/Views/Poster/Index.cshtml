@@ -4,10 +4,68 @@
     ViewBag.Title = Model.Title;
 }
 
-<h1>@Model.Title</h1>
-<p><strong>@Model.PosterId</strong></p>
-<p>@Model.Description</p>
-<p>@Model.EventDate</p>
-<p>@Model.PublicationDate</p>
-<p>@Model.SportType</p>
+<section class="content-section">
+    <section class="poster-detail-section">
+        <div class="poster-detail-eventdate">
+            <p>@Model.EventDate</p>
+        </div>
+        <div class="poster-detail-title">
+            <h1>@Model.Title</h1>
+        </div>
+        <div class="line"></div>
+        <div class="poster-detail-description">
+            <p>@Model.Description</p>
+        </div>
+        <div class="poster-detail-sportype">
+            @if (Model.SportType == SportType.Extreme)
+            {
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/extreme-active.svg" />
+                    <strong>Extreme</strong>
+                </div>
+
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/race-inactive.svg" />
+                    <strong>Race</strong>
+                </div>
+
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/forest-inactive.svg" />
+                    <strong>Forest Ride</strong>
+                </div>
+                
+            }
+            else if (Model.SportType == SportType.Race)
+            {
+                <div class="poster-detail-sportype-extreme">
+                    <img class="sport-icon" width="50" height="50" src="icons/extreme-inactive.svg" />
+                    <strong>Extreme</strong>
+                </div>
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/race-active.svg" />
+                    <strong>Race</strong>
+                </div>
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/forest-inactive.svg" />
+                    <strong>Forest Ride</strong>
+                </div>
+            }
+            else
+            {
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/extreme-inactive.svg" />
+                    <strong>Extreme</strong>
+                </div>
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/race-inactive.svg" />
+                    <strong>Race</strong>
+                </div>
+                <div class="poster-detail-sportype-item">
+                    <img class="sport-icon" width="50" height="50" src="icons/forest-active.svg" />
+                    <strong>Forest Ride</strong>
+                </div>
+            }
+        </div>
+    </section>
+</section>
 
