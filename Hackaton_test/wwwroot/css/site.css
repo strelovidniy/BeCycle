@@ -436,6 +436,11 @@ and (orientation: portrait) {
         background-image: url("/images/mobile-background.svg");
         background-position: center;
         background-size: cover;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .editing {
