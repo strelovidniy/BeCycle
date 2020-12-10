@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton_test.Controllers
 {
-
     [Authorize]
     public class HomeController : Controller
     {
