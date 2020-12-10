@@ -15,29 +15,29 @@
                 <div class="first-information">
                     <div class="input-option">
                         <label for="username-input">Username</label>
-                        <input id="username-input" type="text" placeholder="Username" value="" required />
+                        <input id="username-input" type="text" placeholder="Username" value="@ViewData["UserNickname"]" required />
                     </div>
 
                     <div class="input-option readonly">
                         <label for="name-input">Name</label>
-                        <input id="name-input" type="text" placeholder="Name" value="" readonly="readonly" required />
+                        <input id="name-input" type="text" placeholder="Name" value="@ViewData["UserName"]" readonly="readonly" required />
                     </div>
 
                     <div class="input-option">
                         <label for="phone-input">Phone</label>
-                        <input id="phone-input" type="tel" placeholder="Phone" value="" required autocomplete="off" />
+                        <input id="phone-input" type="tel" placeholder="Phone" value="@ViewData["UserPhone"]" required autocomplete="off" />
                     </div>
                 </div>
 
                 <div class="second-information">
                     <div class="input-option readonly">
                         <label for="email-input">Email</label>
-                        <input id="email-input" type="text" placeholder="Email" value="test@mail.com" readonly="readonly" />
+                        <input id="email-input" type="text" placeholder="Email" value="@ViewData["UserEmail"]" readonly="readonly" />
                     </div>
 
                     <div class="input-option readonly">
                         <label for="surname-input">Surname</label>
-                        <input id="surname-input" type="text" placeholder="Surname" value="" readonly="readonly" required />
+                        <input id="surname-input" type="text" placeholder="Surname" value="@ViewData["UserSurname"]" readonly="readonly" required />
                     </div>
                 </div>
             </form>

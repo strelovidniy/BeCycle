@@ -23,9 +23,14 @@ namespace Hackaton_test.Controllers
             {
                list = db.Posters.Where(poster => poster.SportType == sportType).ToList();
             }
+
             ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
+            ViewData["UserPhone"] = HttpContext.Session.GetString("UserPhone");
+            ViewData["UserEmail"] = HttpContext.Session.GetString("UserEmail");
+
             return View(list);
         }
     }
