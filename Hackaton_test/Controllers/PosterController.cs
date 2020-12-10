@@ -18,7 +18,7 @@ namespace Hackaton_test.Controllers
                 poster = db.Posters.First(poster => poster.PosterId == id);
             }
 
-            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
 

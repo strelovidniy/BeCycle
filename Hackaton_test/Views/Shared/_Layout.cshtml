@@ -44,8 +44,8 @@
 
                 </div>
                 <div class="profile-information">
-                    <h4 id="view-profile-link" href="/profile/index?id=@ViewData["UserId"]" class="name-surname view-profile">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
-                    <a id="view-profile-link" href="/profile/index?id=@ViewData["UserId"]" class="view-profile">View profile</a>
+                    <h4 id="view-profile-link" href="/profile/index?username=@ViewData["UserNickname"]" class="name-surname view-profile">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
+                    <a id="view-profile-link" href="/profile/index?username=@ViewData["UserNickname"]" class="view-profile">View profile</a>
                 </div>
                 <div class="profile-settings">
                     <img class="icon settings" src="~/icons/settings.svg" />

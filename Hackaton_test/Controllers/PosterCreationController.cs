@@ -15,7 +15,7 @@ namespace Hackaton_test.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
 
