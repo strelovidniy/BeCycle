@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Hackaton_test.Models;
 using Hackaton_test.Controllers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace Hackaton_test.Controllers
 {
@@ -16,12 +17,13 @@ namespace Hackaton_test.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult PosterCreation(Poster poster, User user)
+        public IActionResult Index(Poster poster)
         {
             string posterData = $"Title: {poster.Title}, Description: {poster.Description}," +
-                $" EventDate: {poster.EventDate},  " +
-                $"Sport Type: {poster.SportType}, " +
-                $" AuthorId: {poster.AuthorId = user.UserId}";
+                                $" EventDate: {poster.EventDate},  " +
+                                $"Sport Type: {poster.SportType}, " +
+                                $"UserId: {poster.AuthorId = 1}, ";
+            HttpContext.Session.GetInt32("UserId");
                
 
             return Content(posterData);
