@@ -30,7 +30,8 @@
             }
         }
 
-        $('.weather').css('display', 'block');
+        $(".weather").appendTo($(".sidebar"));
+        $(".weather").css('display', 'block');
     }
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
