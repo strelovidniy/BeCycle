@@ -524,6 +524,18 @@ option {
     color: black;
 }
 
+label:hover {
+    cursor: none;
+}
+
+select:hover {
+    cursor: none;
+}
+
+button:hover {
+    cursor: none;
+}
+
 .poster-item label {
     margin-bottom: 8px;
     margin-left: 10px;
@@ -557,8 +569,16 @@ option {
 
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
+    cursor: none;
 }
 
+input:hover {
+    cursor: none;
+}
+
+textarea:hover {
+    cursor: none;
+}
 
 /* ----- Cursor ----- */
 

@@ -122,33 +122,6 @@ $(".profile-settings").click(function (event) {
 
 });
 
-$('.profile-settings').mouseenter(function () {
-    $(follower).css({
-        transform: "scale(1.1)",
-        'background-color': "rgba(0,0,0,.005)"
-    });
-});
-
-$('.profile-settings').mouseleave(function () {
-    $(follower).css({
-        transform: "scale(1)",
-        'background-color': "rgba(255,255,255,.027)"
-    });
-});
-
-$('#view-profile-link').mouseenter(function () {
-    $(follower).css({
-        transform: "scale(1.1)",
-        'background-color': "rgba(0,0,0,.005)"
-    });
-});
-
-$('#view-profile-link').mouseleave(function () {
-    $(follower).css({
-        transform: "scale(1)",
-        'background-color': "rgba(255,255,255,.027)"
-    });
-});
 
 $(".view-profile").click(function () {
     event.preventDefault();
@@ -236,6 +209,108 @@ $(document).ready(function () {
     });
 
     $('.option').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('.profile-settings').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.profile-settings').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+
+
+    $('.poster-title').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.poster-title').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+
+    $('.poster-description').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.poster-description').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('.poster-date').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.poster-date').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('.poster-type').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('.poster-type').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+
+    $('#view-profile-link').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('#view-profile-link').mouseleave(function () {
+        $(follower).css({
+            transform: "scale(1)",
+            'background-color': "rgba(255,255,255,.027)"
+        });
+    });
+
+    $('button').mouseenter(function () {
+        $(follower).css({
+            transform: "scale(1.1)",
+            'background-color': "rgba(0,0,0,.005)"
+        });
+    });
+
+    $('button').mouseleave(function () {
         $(follower).css({
             transform: "scale(1)",
             'background-color': "rgba(255,255,255,.027)"
