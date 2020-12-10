@@ -187,12 +187,7 @@
                 pathValues.push(path.getAt(i).toUrlValue());
             }
 
-            $.get('https://roads.googleapis.com/v1/snapToRoads',
-                {
-                    interpolate: true,
-                    key: apiKey,
-                    path: pathValues.join('|')
-                },
+            $.get('https://roads.googleapis.com/v1/snapToRoads?parameters&key=AIzaSyByt2xHPsNHwyKkqoOqSD8XuE7_yPC47PE',
                 function (data)
                 {
                     processSnapToRoadResponse(data);
