@@ -25,7 +25,7 @@
                     <img class="icon" src="~/icons/home.svg" /><a id="home-link" href="/home">Home</a>
                 </div>
                 <div class="option map">
-                    <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="/map">Map</a>
+                    <img class="icon" src="~/icons/map.svg" /><a id="map-link" href="/map">Points of interest</a>
                 </div>
                 <div class="option poster-create">
                     <img class="icon" src="~/icons/poster.svg" /><a id="posterCreation-link" href="/postercreation">Create new poster</a>
@@ -87,8 +87,8 @@
                         <div class="option poster-create">
                             <img class="icon" src="~/icons/poster.svg" /><a href="/postercreation">Create new poster</a>
                         </div>
-                        <div class="option subscriptions">
-                            <img class="icon" src="~/icons/subscriptions.svg" /><a id="subscriptions-link" href="/home">My subscriptions</a>
+                        <div class="option subscriptions" action="@Url.Action("Following", "Home")">
+                            <img class="icon" src="~/icons/subscriptions.svg" /><a id="subscriptions-link"  >My subscriptions</a>
                         </div>
                         <div class="option go-journey">
                             <img class="icon" src="~/icons/gojourney.svg" /><a href="/gojourney" id="GoJourney-link" href="GoJourney">Go Journey</a>

@@ -12,17 +12,15 @@
     @foreach (var poster in Model)
     {
         <div class="poster">
-            <div class="poster-info">
-                <h1 class="poster-title">@poster.Title</h1>
-                <p class="poster-description">@poster.Description</p>
-                <p class="poster-eventdate">@poster.EventDate</p>
-                <p>@poster.Author</p>
-            </div>
-            
-            <div class="poster-buttons">
-                <button class="view-poster">View</button>
-                <button class="subscribe-button" action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">Subscribe</button>
-            </div>
+            <h1 class="poster-title">@poster.Title</h1>
+            <p class="poster-description">@poster.Description</p>
+            <p class="poster-eventdate">@poster.EventDate</p>
+            <p>@poster.Author</p>
+            <form action="@Url.Action("StartFollowing", "Home", new {poster.PosterId})" method="post">
+                <input type="hidden" name="Id" value="@poster.PosterId">
+                <button class="subscribe-button" type="submit">Subscribe</button>
+            </form>
+          
         </div>
     }
 </main>
