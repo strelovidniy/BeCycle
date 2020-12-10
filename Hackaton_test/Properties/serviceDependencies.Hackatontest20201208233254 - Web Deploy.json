@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/hackatondbdbserver/databases/HackatonDB",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/hackatondbdbserver/databases/HackatonDB",
       "type": "mssql.azure",
       "connectionId": "HackatonDBConnect",
       "secretStore": "AzureAppSettings"
