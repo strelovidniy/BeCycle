@@ -4,12 +4,10 @@ using System.Linq;
 using System.Security.Claims;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton_test.Controllers
 {
-
     [Authorize]
     public class HomeController : Controller
     {
@@ -36,6 +34,7 @@ namespace Hackaton_test.Controllers
             {
                 list = db.Posters.OrderByDescending(pos => pos.EventDate).ToList();
             }
+
             return View(list);
         }
 
@@ -53,12 +52,14 @@ namespace Hackaton_test.Controllers
                 .ToDictionary(key => key.Type.Split('/',
                         StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
                     value => value.Value);
+
             ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
             ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
                 .Aggregate("", (s, c) => s + c);
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
             ViewBag.CurrentSportType = sportType;
+
             return View("Index", list);
         }
 
@@ -69,15 +70,18 @@ namespace Hackaton_test.Controllers
                 .ToDictionary(key => key.Type.Split('/',
                         StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
                     value => value.Value);
+
             ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
             ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
                 .Aggregate("", (s, c) => s + c);
             ViewData["UserName"] = claimsDictionary?["givenname"];
             ViewData["UserSurname"] = claimsDictionary?["surname"];
+
             List<Poster> posters;
+
             using (var dbContext = new ApplicationContext())
             {
-                User currentUser = dbContext.Users.FirstOrDefault(u => u.Email == (string) ViewData["UserEmail"]);
+                var currentUser = dbContext.Users.FirstOrDefault(u => u.Email == (string) ViewData["UserEmail"]);
                 posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
                 dbContext.SaveChanges(true);
                
@@ -102,7 +106,7 @@ namespace Hackaton_test.Controllers
 
             using (var db = new ApplicationContext())
             {
-                User currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
+                var currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
                 list = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
                 
                 var eventFollower = new EventFollower()
@@ -112,13 +116,14 @@ namespace Hackaton_test.Controllers
                     Follower = currentUser,
                     Event =  list
                 };
+
                 currentUser.EventFollowers.Add(eventFollower);
                 posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
                 db.SaveChanges(true);
              
             }
+
             return View("Index", posters);
         }
     }
-
 }
