@@ -1,4 +1,13 @@
 ﻿$(document).ready(function () {
+
+    if (window.location.href.includes($("#view-profile-link").attr("href"))) {
+        $(".sidebar-bottom").hide();
+        $(".sidebar-mobile-bottom").hide();
+    } else {
+        $(".sidebar-bottom").show();
+        $(".sidebar-mobile-bottom").show();
+    }
+
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
     }
