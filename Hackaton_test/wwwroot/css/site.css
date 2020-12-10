@@ -231,6 +231,7 @@ main {
     border: 1px solid white;
     border-radius: 35px;
     width: 100px;
+    height: 40px;
     transition: all .4s ease;
 
     display: flex;
@@ -247,6 +248,7 @@ main {
     margin-top: 1rem;
     border: none;
     width: 100px;
+    height: 40px;
     background-color: transparent;
     color: #6dde40;
     text-transform: uppercase;
@@ -295,6 +297,11 @@ and (orientation: portrait) {
         position: absolute;
         top: 20px;
         left: 20px;
+        z-index: 100;
+    }
+
+    .poster {
+        margin-bottom: 1rem;
     }
 
     .hamburger-menu i {
@@ -359,9 +366,8 @@ and (orientation: portrait) {
 
     main {
         display: block;
-        height: calc(100vh - 10rem);
-        margin-top: 4rem;
-        margin-left: 2rem;
+        height: 100vh;
+        padding-left: 2rem;
     }
 
     .close-menu {

@@ -18,15 +18,20 @@ namespace Hackaton_test.Controllers
         {
             List<Poster> list;
             var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
-            var claimsDictionary = claimsData?
-                .ToDictionary(key => key.Type.Split('/',
-                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
-                    value => value.Value);
-            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
-            ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
-                .Aggregate("", (s, c) => s + c);
-            ViewData["UserName"] = claimsDictionary?["givenname"];
-            ViewData["UserSurname"] = claimsDictionary?["surname"];
+            if (claimsData.Count() != 0)
+            {
+                var claimsDictionary = claimsData?
+                    .ToDictionary(key => key.Type.Split('/',
+                            StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                        value => value.Value);
+
+                ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+                ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
+                    .Aggregate("", (s, c) => s + c);
+                ViewData["UserName"] = claimsDictionary?["givenname"];
+                ViewData["UserSurname"] = claimsDictionary?["surname"];
+            }
+
             using (var db = new ApplicationContext())
             {
                 list = db.Posters.OrderByDescending(pos => pos.EventDate).ToList();
