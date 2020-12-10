@@ -29,7 +29,12 @@ namespace Hackaton_test.Controllers
                     dbContext.Users.FirstOrDefault(user => user.NickName == username)?.UserAchievements;
             }
 
-            return View();
+            if (ViewData["UserAchievements"] != null)
+            {
+                return View();
+            }
+
+            return Redirect("~/Home");
         }
     }
 }
