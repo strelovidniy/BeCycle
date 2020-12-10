@@ -525,16 +525,10 @@ and (orientation: portrait) {
     outline: none;
 }
 
-option {
-    color: black;
-}
 
 label:hover {
     cursor: none;
-}
 
-select:hover {
-    cursor: none;
 }
 
 button:hover {
@@ -544,6 +538,14 @@ button:hover {
 .poster-item label {
     margin-bottom: 8px;
     margin-left: 10px;
+}
+
+.poster-type select {
+    cursor: none;
+}
+
+.poster-type option {
+    color: black;
 }
 
 .create-poster-button {
