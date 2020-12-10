@@ -74,6 +74,7 @@ namespace Hackaton_test.Controllers
             {
                 User currentUser = dbContext.Users.FirstOrDefault(u => u.Email == (string) ViewData["UserEmail"]);
                 List<Poster> posters = currentUser.EventFollowers.Select(ef => ef.Event).ToList();
+                dbContext.SaveChanges(true);
                 return View("Subscriptions", posters);
             }
         }
