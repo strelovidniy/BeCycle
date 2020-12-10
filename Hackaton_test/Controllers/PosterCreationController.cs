@@ -1,7 +1,10 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Hackaton_test.Controllers
 {
@@ -26,14 +29,29 @@ namespace Hackaton_test.Controllers
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
 
-            var posterData = $"Title: {poster.Title}, Description: {poster.Description}," +
-                             $" EventDate: {poster.EventDate},  " +
-                             $"Sport Type: {poster.SportType}, " +
-                             $"UserId: {poster.AuthorId = 1}, ";
+            User currentUser;
+            EntityEntry<Poster> enPoster;
 
-            HttpContext.Session.GetInt32("UserId");
-
-            return Content(posterData);
+            using (var db = new ApplicationContext())
+            {
+                currentUser = db.Users.First(us => us.UserId == (int)ViewData["UserId"] );
+            }
+            
+            Poster newPoster = new Poster()
+            {
+                Title = poster.Title,
+                Description =  poster.Description,
+                EventDate =  poster.EventDate,
+                PublicationDate =  DateTime.Now,
+                SportType =  poster.SportType,
+                Author = currentUser, AuthorId = (int)ViewData["UserId"]
+            };
+       
+            using (var db = new ApplicationContext())
+            {
+               enPoster = db.Posters.Add(newPoster);
+            }
+            return RedirectToAction("Index", "Poster", new {enPoster.Entity.PosterId});
         }
     }
 }

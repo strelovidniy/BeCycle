@@ -11,13 +11,13 @@ namespace Hackaton_test.Controllers
     public class HomeController : Controller
     {
         [AllowAnonymous]
-        public IActionResult Index(SportType sportType = 0)
+        public IActionResult Index()
         {
             List<Poster> list;
 
             using (var db = new ApplicationContext())
             {
-               list = db.Posters.Where(poster => poster.SportType == sportType).ToList();
+               list = db.Posters.ToList();
             }
 
             ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
