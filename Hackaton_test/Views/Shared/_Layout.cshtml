@@ -70,20 +70,23 @@
                 </div>
             </div>
         </div>
-        <div class="sidebar-mobile-bottom">
-            <div class="user">
-                <div class="profile-picture">
+        @if (ViewData["UserName"] != null && ViewData["UserSurname"] != null)
+        {
+            <div class="sidebar-mobile-bottom">
+                <div class="user">
+                    <div class="profile-picture">
 
+                    </div>
+                    <div class="profile-information">
+                        <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
+                        <p class="view-profile">View profile</p>
+                    </div>
                 </div>
-                <div class="profile-information">
-                    <h4 class="name-surname">@ViewData["UserName"] @ViewData["UserSurname"]</h4>
-                    <p class="view-profile">View profile</p>
+                <div class="profile-settings">
+                    <img class="icon settings" src="~/icons/settings.svg"/>
                 </div>
             </div>
-            <div class="profile-settings">
-                <img class="icon settings" src="~/icons/settings.svg" />
-            </div>
-        </div>
+        }
     </div>
 
 
