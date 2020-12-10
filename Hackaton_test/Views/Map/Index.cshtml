@@ -66,7 +66,7 @@
 
         function initialize()
         {
-            
+            var LocationList = @Html.Raw(Json.Serialize(ViewBag.Locations));
             var mapOptions =
             {
                 zoom: 13,
@@ -77,6 +77,33 @@
             };
             
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            
+             const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            
+                     var list_location = []
+                      
+                      for (var x=0;x<LocationList.length;x++)
+                      {
+                         list_location.push({lat: parseFloat(LocationList[x].split(',')[0]), lng: parseFloat(LocationList[x].split(',')[1])});
+                      }
+                  
+                  const markers = list_location.map((location, i) => {
+                    return new google.maps.Marker({
+                      position: location,
+                      label: labels[i % labels.length],
+                    });
+                  });
+            
+                var markerCluster = new MarkerClusterer(map, markers,
+                            {imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"});
+            
+            
+            
+            
+            
+            
+            
+            
 
             // Adds a Places search box. Searching for a place will center the map on that
             // location.
@@ -207,6 +234,15 @@
 
         $(window).load(initialize);
     </script>
+    
+        <script src="https://unpkg.com/@@googlemaps/markerclustererplus/dist/index.min.js"></script>
+        
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSL0N9YBwnl00XZ8UqRYgX2-YF_S9j3R4&callback=initMap"
+            defer
+        ></script>
+        
+    
 </head>
 
 <body>
