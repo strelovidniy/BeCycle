@@ -11,7 +11,7 @@ namespace Hackaton_test.Controllers
     public class HomeController : Controller
     {
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             List<Poster> list;
 

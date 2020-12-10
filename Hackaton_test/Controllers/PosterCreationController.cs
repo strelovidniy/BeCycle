@@ -1,10 +1,14 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hackaton_test.Controllers
 {
@@ -18,41 +22,34 @@ namespace Hackaton_test.Controllers
             ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
             ViewData["UserName"] = HttpContext.Session.GetString("UserName");
             ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
-
+            
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(Poster poster)
+        public async Task<IActionResult> Create(Poster poster)
         {
-            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
-
-            User currentUser;
-            EntityEntry<Poster> enPoster;
-
             using (var db = new ApplicationContext())
             {
-                currentUser = db.Users.First(us => us.UserId == (int)ViewData["UserId"] );
+                var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+                var claimsDictionary = claimsData?
+                    .ToDictionary(key => key.Type.Split('/', 
+                            StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                        value => value.Value);
+                string email = claimsDictionary?["emailaddress"];
+                User currentUser = db.Users.FirstOrDefault(u => u.Email == email);
+                ViewData["UserName"] = currentUser?.FirstName;
+                ViewData["UserSurname"] = currentUser?.LastName;
+                poster.PublicationDate = DateTime.Now;
+                if (currentUser != null)
+                {
+                    poster.AuthorId = currentUser.UserId;
+                    EntityEntry<Poster> enPoster = await db.Posters.AddAsync(poster);
+                    await db.SaveChangesAsync(true);
+                    return RedirectToAction("Index", "Poster", new {id = enPoster.Entity.PosterId });
+                }
+                return RedirectToRoute("~account/google-signin");
             }
-            
-            var newPoster = new Poster()
-            {
-                Title = poster.Title,
-                Description =  poster.Description,
-                EventDate =  poster.EventDate,
-                PublicationDate =  DateTime.Now,
-                SportType =  poster.SportType,
-                Author = currentUser, AuthorId = (int)ViewData["UserId"]
-            };
-       
-            using (var db = new ApplicationContext())
-            {
-               enPoster = db.Posters.Add(newPoster);
-            }
-
-            return RedirectToAction("Index", "Poster", new {enPoster.Entity.PosterId});
         }
     }
 }
