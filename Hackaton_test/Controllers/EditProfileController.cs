@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Hackaton_test.Models;
 
 namespace Hackaton_test.Controllers
 {
     [Authorize]
     public class EditProfileController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
@@ -17,6 +19,13 @@ namespace Hackaton_test.Controllers
             ViewData["UserEmail"] = HttpContext.Session.GetString("UserEmail");
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(User user)
+        {
+            string userInfo = $"UserNickname: {user.NickName}, UserPhone: {user.PhoneNumber}";
+            return Content(userInfo);
         }
     }
 }

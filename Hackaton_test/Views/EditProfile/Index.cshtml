@@ -12,7 +12,7 @@
         <div class="middle">
             <h2 class="mobile-heading-edit">Information</h2>
             <div class="editing-desktop">
-                <form id="editing-form">
+                <form id="editing-form" method="post">
                     <div class="first-information">
                         <div class="input-option readonly">
                             <label for="name-input">Name</label>
@@ -21,12 +21,12 @@
 
                         <div class="input-option">
                             <label for="username-input">Username</label>
-                            <input id="username-input" type="text" placeholder="Username" value="@ViewData["UserNickname"]" required/>
+                            <input id="username-input" type="text" name="NickName" placeholder="Username" value="@ViewData["UserNickname"]" required/>
                         </div>
 
                         <div class="input-option">
                             <label for="phone-input">Phone</label>
-                            <input id="phone-input" type="tel" placeholder="Phone" value="@ViewData["UserPhone"]" required autocomplete="off"/>
+                            <input id="phone-input" type="tel" name="PhoneNumber" placeholder="Phone" value="@ViewData["UserPhone"]" required autocomplete="off"/>
                         </div>
                     </div>
 
@@ -42,8 +42,10 @@
                             <input id="email-input" type="text" placeholder="Email" value="@ViewData["UserEmail"]" readonly="readonly" />
                         </div>
                     </div>
+                    <button class="editing-button" type="submit">Save</button>
                 </form>
             </div>
+
             <div class="editing-mobile">
                 <form id="editing-form">
                     <div class="first-information">
@@ -83,5 +85,5 @@
         </div>
     </div>
 
-    <button class="editing-button" type="submit">Save</button>
+    
 </div>
