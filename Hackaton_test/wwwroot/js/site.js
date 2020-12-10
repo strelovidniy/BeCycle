@@ -37,12 +37,16 @@
     if (!window.matchMedia("(max-width: 767px)").matches) {
         $(".sidebar").css('display', 'flex');
         $(".editing-desktop").css('display', 'block');
+        $('#cursor').show();
+        $('#aura').show();
         $(".editing-mobile").css('display', 'none');
     }
 
     if (window.matchMedia("(max-width: 767px)").matches) {
         $(".mobile-heading-edit").css('display', 'none');
         $(".editing-mobile").css('display', 'block');
+        $('#cursor').hide();
+        $('#aura').hide();
         $(".editing-desktop").css('display', 'none');
     }
 
