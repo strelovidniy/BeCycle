@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton_test.Controllers
 {
+
     [Authorize]
     public class HomeController : Controller
     {
@@ -17,12 +20,19 @@ namespace Hackaton_test.Controllers
 
             using (var db = new ApplicationContext())
             {
-               list = db.Posters.OrderByDescending(pos=>pos.EventDate).ToList();
+                list = db.Posters.OrderByDescending(pos => pos.EventDate).ToList();
             }
 
-            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+            var claimsDictionary = claimsData?
+                .ToDictionary(key => key.Type.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                    value => value.Value);
+            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+            ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
+                .Aggregate("", (s, c) => s + c);
+            ViewData["UserName"] = claimsDictionary?["givenname"];
+            ViewData["UserSurname"] = claimsDictionary?["surname"];
 
             return View(list);
         }
@@ -33,56 +43,82 @@ namespace Hackaton_test.Controllers
 
             using (var db = new ApplicationContext())
             {
-                list = db.Posters.Where(pos=> pos.SportType == sportType).ToList();
+                list = db.Posters.Where(pos => pos.SportType == sportType).ToList();
             }
 
-            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+            var claimsDictionary = claimsData?
+                .ToDictionary(key => key.Type.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                    value => value.Value);
+            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+            ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
+                .Aggregate("", (s, c) => s + c);
+            ViewData["UserName"] = claimsDictionary?["givenname"];
+            ViewData["UserSurname"] = claimsDictionary?["surname"];
             ViewBag.CurrentSportType = sportType;
             return View("Index", list);
         }
-        
+
         public IActionResult Following()
         {
-            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+            var claimsDictionary = claimsData?
+                .ToDictionary(key => key.Type.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                    value => value.Value);
+            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+            ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
+                .Aggregate("", (s, c) => s + c);
+            ViewData["UserName"] = claimsDictionary?["givenname"];
+            ViewData["UserSurname"] = claimsDictionary?["surname"];
 
             List<Poster> posters;
 
             using (var dbContext = new ApplicationContext())
             {
                 posters = dbContext.Posters.Where(poster =>
-                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickname"] as string))
+                    dbContext.Users.FirstOrDefault(user => user.NickName == (ViewData["UserNickName"] as string))
                         .Posters.Contains(poster)).ToList();
             }
 
             return View("Index", posters);
         }
-        
+
         public IActionResult StartFollowing(int id)
         {
-            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+            var claimsDictionary = claimsData?
+                .ToDictionary(key => key.Type.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                    value => value.Value);
+            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+            ViewData["UserNickName"] = claimsDictionary?["emailaddress"].TakeWhile(ch => ch != '@')
+                .Aggregate("", (s, c) => s + c);
+            ViewData["UserName"] = claimsDictionary?["givenname"];
+            ViewData["UserSurname"] = claimsDictionary?["surname"];
 
             User currentUser;
             Poster currentPoster;
 
             using (var db = new ApplicationContext())
             {
-                currentUser = db.Users.FirstOrDefault(us => us.UserId == (int)ViewData["UserId"] );
+                currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
                 currentPoster = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
             }
-            
+
             var eventFollower = new EventFollower()
             {
-                Event = currentPoster, Follower = currentUser, EventId = id, FollowerId = (int)ViewData["UserId"]
+                Event = currentPoster,
+                Follower = currentUser,
+                EventId = id,
+                FollowerId = currentUser.UserId
             };
-            
+
             currentUser.EventFollowers.Add(eventFollower);
             currentPoster.EventFollowers.Add(eventFollower);
-            
-            List<Poster> posters = new List<Poster>(){new Poster(){PosterId = 100, Title = "lol", Description = "Dec"}};
+
+            List<Poster> posters = new List<Poster>() { new Poster() { PosterId = 100, Title = "lol", Description = "Dec" } };
 
             // using (var dbContext = new ApplicationContext())
             // {
@@ -92,13 +128,13 @@ namespace Hackaton_test.Controllers
             // }
 
             return View("Index", posters);
-            
-            
-            
-            
+
+
+
+
 
             return RedirectToAction("Following", "Home");
         }
     }
-    
+
 }

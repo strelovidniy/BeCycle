@@ -19,10 +19,14 @@ namespace Hackaton_test.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewData["UserNickname"] = HttpContext.Session.GetString("UserNickname");
-            ViewData["UserName"] = HttpContext.Session.GetString("UserName");
-            ViewData["UserSurname"] = HttpContext.Session.GetString("UserSurname");
-            
+            var claimsData = ((ClaimsIdentity)HttpContext.User.Identity)?.Claims;
+            var claimsDictionary = claimsData?
+                .ToDictionary(key => key.Type.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries).TakeLast(1).FirstOrDefault(),
+                    value => value.Value);
+            ViewData["UserEmail"] = claimsDictionary?["emailaddress"];
+            ViewData["UserName"] = claimsDictionary?["givenname"];
+            ViewData["UserSurname"] = claimsDictionary?["surname"];
             return View();
         }
 
