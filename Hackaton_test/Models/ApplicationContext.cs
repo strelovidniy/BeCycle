@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton_test.Models
@@ -24,10 +25,10 @@ namespace Hackaton_test.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new SqlConnectionStringBuilder();
-            builder.DataSource = @"hackatondbdbserver.database.windows.net";
-            builder.UserID = "HackatonTeam";
-            builder.Password = "Hackaton!TopTeam";
-            builder.InitialCatalog = "HackatonDB";
+            builder.DataSource = @"mentor-me-dbserver.database.windows.net,1433";
+            builder.UserID = "MentorMeDbUser@mentor-me-dbserver";
+            builder.Password = "!Mentor123";
+            builder.InitialCatalog = "BeCycle";
             optionsBuilder.UseSqlServer(builder.ConnectionString);
         }
     }
