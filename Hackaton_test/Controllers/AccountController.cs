@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Hackaton_test.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton_test.Controllers
 {
@@ -48,7 +48,7 @@ namespace Hackaton_test.Controllers
                     var nickName = googleAuthData["emailaddress"].TakeWhile(ch => ch != '@')
                         .Aggregate("", (s, c) => s + c);
 
-                    var registeredUser = await dbContext.Users.AddAsync(new User()
+                    var registeredUser = await dbContext.Users.AddAsync(new User
                     {
                         Email = googleAuthData["emailaddress"], FirstName = googleAuthData["givenname"],
                         LastName = googleAuthData["surname"], NickName = nickName

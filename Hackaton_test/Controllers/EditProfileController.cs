@@ -1,8 +1,8 @@
 ﻿using System.Linq;
+using Hackaton_test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Hackaton_test.Models;
 
 namespace Hackaton_test.Controllers
 {

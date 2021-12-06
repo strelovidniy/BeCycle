@@ -109,7 +109,7 @@ namespace Hackaton_test.Controllers
                 var currentUser = db.Users.FirstOrDefault(us => us.Email == (string)ViewData["UserEmail"]);
                 list = db.Posters.FirstOrDefault(pos => pos.PosterId == id);
                 
-                var eventFollower = new EventFollower()
+                var eventFollower = new EventFollower
                 {
                     EventId = id,
                     FollowerId = currentUser.UserId,

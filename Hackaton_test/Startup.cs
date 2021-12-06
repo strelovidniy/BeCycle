@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,8 +28,8 @@ namespace Hackaton_test
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "713332156036-l80sb9pr0ggjuurad736s37c6k8gfdsr.apps.googleusercontent.com";
-                    options.ClientSecret = "5px-jceTgtMb2OHFrtF9aJn9";
+                    options.ClientId = "437501184500-0te3ok2noug2o66cfguuknbbuedpfe2d.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
                 });
 
             services.AddControllersWithViews();
@@ -53,6 +54,11 @@ namespace Hackaton_test
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Lax
+            });
 
             app.UseEndpoints(endpoints =>
             {

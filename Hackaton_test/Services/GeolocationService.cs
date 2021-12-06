@@ -4,7 +4,7 @@ namespace Hackaton_test.Services
 {
     public class GeolocationService : IGeolocationService
     {
-        private List<string> geolocations = new List<string>()
+        private List<string> geolocations = new List<string>
         {   "49.848540,24.040773",
             "49.844123,24.055628",
             "49.852610,23.994028",

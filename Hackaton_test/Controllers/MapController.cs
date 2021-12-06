@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using Hackaton_test.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton_test.Controllers
 {
